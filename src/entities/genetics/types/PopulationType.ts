@@ -2,7 +2,7 @@ import PointInterface from "../../graphics/interfaces/PointInterface";
 
 type PopulationType = {
     maxPoint: PointInterface;
-    nofPointMax: number;
+    nofPointsMax: number;
     nofPointsMin: number;
     thicknessMax: number;
     thicknessMin: number;

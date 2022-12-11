@@ -4,7 +4,7 @@ import BezierCurveInterface from "../graphics/interfaces/BezierCurveInterface";
 class Agent implements AgentInterface {
     bezierCurve: BezierCurveInterface;
     fitnessScore: number = 0;
-    geneticRepresentation: string | undefined;
+    geneticRepresentation: string = '';
 
     constructor(bezierCurve: BezierCurveInterface) {
         this.bezierCurve = bezierCurve;

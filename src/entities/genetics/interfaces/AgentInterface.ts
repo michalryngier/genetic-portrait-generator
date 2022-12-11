@@ -3,7 +3,7 @@ import BezierCurveInterface from "../../graphics/interfaces/BezierCurveInterface
 interface AgentInterface {
     bezierCurve: BezierCurveInterface;
     fitnessScore: number;
-    geneticRepresentation: string | undefined;
+    geneticRepresentation: string;
 
     getUpdatedBezierCurve(): BezierCurveInterface;
 }
