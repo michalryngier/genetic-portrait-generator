@@ -1,7 +1,7 @@
 import Jimp from "jimp";
-import PictureInterface from "../interfaces/PictureInterface";
-import JimpImageInterface from "../interfaces/JimpImageInterface";
-import JimpImage from "../entities/JimpImage";
+import PictureInterface from "./interfaces/PictureInterface";
+import JimpImageInterface from "./interfaces/JimpImageInterface";
+import JimpImage from "./JimpImage";
 
 const KERNELS = [
     {

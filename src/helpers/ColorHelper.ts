@@ -49,8 +49,8 @@ class ColorHelper {
         return hex.length ? parseInt(hex, 16) : 0;
     }
 
-    public static decToBinary(dec: string, length: number) {
-        let binary = parseInt(dec).toString(2);
+    public static decToBinary(dec: number, length: number) {
+        let binary = dec.toString(2);
         if (binary.length < length) {
             let diff = length - binary.length,
                 prepend = "";

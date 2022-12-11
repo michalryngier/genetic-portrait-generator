@@ -1,11 +1,11 @@
 import Jimp from "jimp";
-import MathHelper from "../helpers/MathHelper";
-import ColorHelper from "../helpers/ColorHelper";
-import JimpCallbackInterface from "../interfaces/JimpCallbackInterface";
-import PointInterface from "../interfaces/PointInterface";
-import ThreshholdInterface from "../interfaces/ThreshholdInterface";
-import BezierCurveInterface from "../interfaces/BezierCurveInterface";
-import JimpImageInterface from "../interfaces/JimpImageInterface";
+import MathHelper from "../../helpers/MathHelper";
+import ColorHelper from "../../helpers/ColorHelper";
+import JimpCallbackInterface from "./interfaces/JimpCallbackInterface";
+import PointInterface from "./interfaces/PointInterface";
+import ThreshholdInterface from "./interfaces/ThreshholdInterface";
+import BezierCurveInterface from "./interfaces/BezierCurveInterface";
+import JimpImageInterface from "./interfaces/JimpImageInterface";
 import Point from "./Point";
 
 class JimpImage implements JimpImageInterface {

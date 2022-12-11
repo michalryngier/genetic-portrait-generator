@@ -1,8 +1,8 @@
-import Point from "../entities/Point";
-import PointInterface from "../interfaces/PointInterface";
-import BezierCurveInterface from "../interfaces/BezierCurveInterface";
+import Point from "./Point";
 import _ from "lodash";
-import MathHelper from "../helpers/MathHelper";
+import MathHelper from "../../helpers/MathHelper";
+import PointInterface from "./interfaces/PointInterface";
+import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 
 class BezierCurve implements BezierCurveInterface {
     public start: PointInterface = new Point(0, 0);
@@ -60,7 +60,7 @@ class BezierCurve implements BezierCurveInterface {
         start: PointInterface,
         end: PointInterface,
         points: Array<PointInterface>,
-        thickness: number | null = null
+        thickness: number | null | undefined = null
     ): void {
         this.start = start;
         this.end = end;

@@ -8,6 +8,15 @@ interface BezierCurveInterface {
     bezierPoints: number;
 
     getPoint(t: number): PointInterface;
+
+    setProperties(
+        start: PointInterface,
+        end: PointInterface,
+        points: Array<PointInterface>,
+        thickness: number | null
+    ): void
+
+    interpolate(t: number, points: Array<PointInterface>): PointInterface
 }
 
 export default BezierCurveInterface;
