@@ -146,7 +146,7 @@ class JimpImage implements JimpImageInterface {
         return base64;
     }
 
-    static createFromMatrix(edgeMatrix: JimpImage, scale: number = 1): JimpImageInterface {
+    static createFromMatrix(edgeMatrix: JimpImageInterface, scale: number = 1): JimpImageInterface {
         return new JimpImage(
             new Jimp(
                 edgeMatrix.width * scale,

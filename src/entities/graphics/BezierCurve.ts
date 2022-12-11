@@ -5,6 +5,7 @@ import PointInterface from "./interfaces/PointInterface";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 import ColorHelper from "../../helpers/ColorHelper";
 import StringHelper from "../../helpers/StringHelper";
+import ConfigurationProvider from "../../providers/ConfigurationProvider";
 
 class BezierCurve implements BezierCurveInterface {
     public start: PointInterface = new Point(0, 0);
@@ -85,7 +86,7 @@ class BezierCurve implements BezierCurveInterface {
     }
 
     asBinary(): string {
-        const ALLELE_LENGTH = 64;
+        const ALLELE_LENGTH = ConfigurationProvider.ALLELE_LENGTH;
 
         let startX = ColorHelper.decToBinary(this.start.x, ALLELE_LENGTH);
         let startY = ColorHelper.decToBinary(this.start.y, ALLELE_LENGTH);
@@ -102,7 +103,7 @@ class BezierCurve implements BezierCurveInterface {
     }
 
     updateFromBinary(binaryRepresentation: string | undefined): void {
-        const ALLELE_LENGTH = 64;
+        const ALLELE_LENGTH = ConfigurationProvider.ALLELE_LENGTH;
 
         if (!binaryRepresentation) {
             return;
@@ -119,3 +120,5 @@ class BezierCurve implements BezierCurveInterface {
         this.setProperties(start, end, points, null);
     }
 }
+
+export default BezierCurve;

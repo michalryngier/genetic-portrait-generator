@@ -4,28 +4,32 @@ import MutatorInterface from "./MutatorInterface";
 import CrosserInterface from "./CrosserInterface";
 import EvaluatorInterface from "./EvaluatorInterface";
 import PopulationType from "../types/PopulationType";
-import PopulatorServiceInterface from "./PopulatorServiceInterface";
+import PopulatorInterface from "./PopulatorInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
-import SavingServiceInterface from "../../services/interfaces/SavingServiceInterface";
-import DrawingServiceInterface from "../../services/interfaces/DrawingServiceInterface";
+import SavingServiceInterface from "../../../services/interfaces/SavingServiceInterface";
+import DrawingServiceInterface from "../../../services/interfaces/DrawingServiceInterface";
+import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 
 interface CauldronInterface {
-    agents: Array<AgentInterface>;
-    mutator: MutatorInterface | undefined;
-    crosser: CrosserInterface | undefined;
-    evaluator: EvaluatorInterface | undefined;
-    mixer: MixerInterface | undefined;
-    referenceImage: JimpImageInterface | undefined;
-    populationConfig: PopulationType | undefined;
-    populatorService: PopulatorServiceInterface | undefined;
-    savingService: SavingServiceInterface | undefined;
-    drawingService: DrawingServiceInterface | undefined;
-    mutationChance: number | undefined;
-    crossoverChance: number | undefined;
+  agents: Array<AgentInterface>;
+  mutator: MutatorInterface | undefined;
+  crosser: CrosserInterface | undefined;
+  evaluator: EvaluatorInterface | undefined;
+  mixer: MixerInterface | undefined;
+  referenceImage: JimpImageInterface | undefined;
+  populationConfig: PopulationType | undefined;
+  populator: PopulatorInterface | undefined;
+  savingService: SavingServiceInterface | undefined;
+  drawingService: DrawingServiceInterface | undefined;
+  mutationChance: number | undefined;
+  crossoverChance: number | undefined;
 
-    startMixing(): void;
+  startMixing(): void;
 
-    draw(outputImage: JimpImageInterface): void;
+  draw(
+    outputImage: JimpImageInterface,
+    outputImageConfig: OutputImageConfigType
+  ): void;
 }
 
 export default CauldronInterface;

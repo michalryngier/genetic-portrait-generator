@@ -3,7 +3,7 @@ import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 
 interface FitnessFunctionInterface {
     weight: number;
-    next: FitnessFunctionInterface | undefined | null;
+    decorator: FitnessFunctionInterface | undefined | null;
 
     _evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): number;
 
