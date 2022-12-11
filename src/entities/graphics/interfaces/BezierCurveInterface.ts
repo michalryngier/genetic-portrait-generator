@@ -14,9 +14,9 @@ interface BezierCurveInterface {
         end: PointInterface,
         points: Array<PointInterface>,
         thickness: number | null
-    ): void
+    ): void;
 
-    interpolate(t: number, points: Array<PointInterface>): PointInterface
+    interpolate(t: number, points: Array<PointInterface>): PointInterface;
 
     asBinary(): string;
 

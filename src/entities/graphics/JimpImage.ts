@@ -22,11 +22,17 @@ class JimpImage implements JimpImageInterface {
     }
 
     get image(): Jimp {
-        return this.jimpImage
+        return this.jimpImage;
     }
 
-    private getColorWithThreshold(point: PointInterface, threshold: number): number {
-        let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(point, threshold);
+    private getColorWithThreshold(
+        point: PointInterface,
+        threshold: number
+    ): number {
+        let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(
+            point,
+            threshold
+        );
         let sum = 0,
             iterations = 0;
 
@@ -39,7 +45,10 @@ class JimpImage implements JimpImageInterface {
         return parseInt((sum / iterations).toString());
     }
 
-    private getPointsWithThreshold(point: Point, threshold: number): ThreshholdInterface {
+    private getPointsWithThreshold(
+        point: Point,
+        threshold: number
+    ): ThreshholdInterface {
         return {
             xMin: Math.round(MathHelper.clamp(point.x - threshold, this.width)),
             yMin: Math.round(MathHelper.clamp(point.y - threshold, this.height)),
@@ -52,14 +61,21 @@ class JimpImage implements JimpImageInterface {
         this.image.scan(0, 0, this.width, this.height, fn);
     }
 
-    getColorOnPosition(point: PointInterface, threshold: number | null = null): number {
+    getColorOnPosition(
+        point: PointInterface,
+        threshold: number | null = null
+    ): number {
         if (threshold !== null && threshold > 1) {
             return this.getColorWithThreshold({x: point.x, y: point.y}, threshold);
         }
 
-        return this.jimpImage.getPixelColor(point.x, point.y, function (err: Error | null, color: number) {
-            return color;
-        });
+        return this.jimpImage.getPixelColor(
+            point.x,
+            point.y,
+            function (err: Error | null, color: number) {
+                return color;
+            }
+        );
     }
 
     flattenImage(precision = 1) {
@@ -83,16 +99,26 @@ class JimpImage implements JimpImageInterface {
         });
     }
 
-    drawPoint(point: PointInterface, color: number, thickness: number = 1, lerpColor: boolean = false) {
+    drawPoint(
+        point: PointInterface,
+        color: number,
+        thickness: number = 1,
+        lerpColor: boolean = false
+    ) {
         if (thickness > 1) {
-            let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(point, thickness / 2,),
+            let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(
+                    point,
+                    thickness / 2
+                ),
                 diffX = Math.abs(xMax - xMin),
                 diffY = Math.abs(yMax - yMin);
 
             this.image.scan(xMin, yMin, diffX, diffY, (xx, yy) => {
                 if (lerpColor) {
                     let t =
-                        1 - (Math.abs(point.x - xx) / diffX) * (1 - Math.abs(point.y - yy) / diffY);
+                        1 -
+                        (Math.abs(point.x - xx) / diffX) *
+                        (1 - Math.abs(point.y - yy) / diffY);
                     let alpha = MathHelper.lerp(0, 255, t);
                     color = ColorHelper.getColorWithAlpha(color, alpha);
                 }
@@ -103,7 +129,12 @@ class JimpImage implements JimpImageInterface {
         }
     }
 
-    drawBezier(bezierCurve: BezierCurveInterface, scale = 1, color = ColorHelper.white, lerpColor = false): void {
+    drawBezier(
+        bezierCurve: BezierCurveInterface,
+        scale = 1,
+        color = ColorHelper.white,
+        lerpColor = false
+    ): void {
         let step = 1 / bezierCurve.bezierPoints;
         for (let t = 0; t < 1; t += step) {
             let point = bezierCurve.getPoint(t);
@@ -112,13 +143,13 @@ class JimpImage implements JimpImageInterface {
                     new Point(point.x * scale, point.y * scale),
                     color,
                     bezierCurve.thickness,
-                    lerpColor,
+                    lerpColor
                 );
             }
         }
     }
 
-    writeImage(fileName: string = 'image.png'): Jimp | Error {
+    writeImage(fileName: string = "image.png"): Jimp | Error {
         return this.jimpImage.write(fileName, (err: Error | null, jimp: Jimp) => {
             if (err !== null) {
                 return err;
@@ -131,13 +162,16 @@ class JimpImage implements JimpImageInterface {
     toBase64(): string | Error {
         let base64 = "";
         let error = null;
-        this.image.getBase64(this.image.getMIME(), (err: Error | null, res: string) => {
-            if (err !== null) {
-                error = err;
-            }
+        this.image.getBase64(
+            this.image.getMIME(),
+            (err: Error | null, res: string) => {
+                if (err !== null) {
+                    error = err;
+                }
 
-            base64 = res;
-        });
+                base64 = res;
+            }
+        );
 
         if (error !== null) {
             return error;
@@ -146,7 +180,10 @@ class JimpImage implements JimpImageInterface {
         return base64;
     }
 
-    static createFromMatrix(edgeMatrix: JimpImageInterface, scale: number = 1): JimpImageInterface {
+    static createFromMatrix(
+        edgeMatrix: JimpImageInterface,
+        scale: number = 1
+    ): JimpImageInterface {
         return new JimpImage(
             new Jimp(
                 edgeMatrix.width * scale,
@@ -158,7 +195,11 @@ class JimpImage implements JimpImageInterface {
         );
     }
 
-    static createFromParams(width: number, height: number, scale: number = 1): JimpImageInterface {
+    static createFromParams(
+        width: number,
+        height: number,
+        scale: number = 1
+    ): JimpImageInterface {
         return new JimpImage(
             new Jimp(
                 width * scale,

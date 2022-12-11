@@ -14,94 +14,113 @@ import SavableInterface from "../../services/interfaces/SavableInterface";
 import OutputImageConfigType from "../graphics/types/OutputImageConfigType";
 
 class Cauldron implements CauldronInterface, SavableInterface {
-  populationConfig: PopulationType | undefined;
-  populator: PopulatorInterface | undefined;
-  referenceImage: JimpImageInterface | undefined;
-  mixer: MixerInterface | undefined;
-  evaluator: EvaluatorInterface | undefined;
-  mutator: MutatorInterface | undefined;
-  crosser: CrosserInterface | undefined;
-  mutationChance: number | undefined;
-  crossoverChance: number | undefined;
-  drawingService: DrawingServiceInterface | undefined;
-  savingService: SavingServiceInterface | undefined;
-  agents: Array<AgentInterface>;
+    populationConfig: PopulationType | undefined;
+    populator: PopulatorInterface | undefined;
+    referenceImage: JimpImageInterface | undefined;
+    mixer: MixerInterface | undefined;
+    evaluator: EvaluatorInterface | undefined;
+    mutator: MutatorInterface | undefined;
+    crosser: CrosserInterface | undefined;
+    mutationChance: number | undefined;
+    crossoverChance: number | undefined;
 
-  constructor(
-    populationConfig: PopulationType,
-    populator: PopulatorInterface,
-    referenceImage: JimpImageInterface,
-    mixer: MixerInterface,
-    evaluator: EvaluatorInterface,
-    mutator: MutatorInterface,
-    crosser: CrosserInterface,
-    mutationChance: number,
-    crossoverChance: number,
-    drawingService: DrawingServiceInterface,
-    savingService: SavingServiceInterface
-  ) {
-    this.populationConfig = populationConfig;
-    this.populator = populator;
-    this.referenceImage = referenceImage;
-    this.mixer = mixer;
-    this.evaluator = evaluator;
-    this.mutator = mutator;
-    this.crosser = crosser;
-    this.mutationChance = mutationChance;
-    this.crossoverChance = crossoverChance;
-    this.drawingService = drawingService;
-    this.savingService = savingService;
-    this.agents = this.populator.createPopulation(this.populationConfig);
-  }
+    nofMixes: number = 100;
+    drawingService: DrawingServiceInterface | undefined;
+    savingService: SavingServiceInterface | undefined;
+    agents: Array<AgentInterface>;
 
-  draw(
-    outputImage: JimpImageInterface,
-    outputImageConfig: OutputImageConfigType
-  ): void {
-    if (this.drawingService) {
-      this.drawingService.draw(this.agents, outputImage, outputImageConfig);
-    } else {
-      LoggerService.error("Drawing service is not defined.");
+    constructor(
+        populationConfig: PopulationType,
+        populator: PopulatorInterface,
+        referenceImage: JimpImageInterface,
+        mixer: MixerInterface,
+        evaluator: EvaluatorInterface,
+        mutator: MutatorInterface,
+        crosser: CrosserInterface,
+        mutationChance: number,
+        crossoverChance: number,
+        nofMixes: number,
+        drawingService: DrawingServiceInterface,
+        savingService: SavingServiceInterface
+    ) {
+        this.populationConfig = populationConfig;
+        this.populator = populator;
+        this.referenceImage = referenceImage;
+        this.mixer = mixer;
+        this.evaluator = evaluator;
+        this.mutator = mutator;
+        this.crosser = crosser;
+        this.mutationChance = mutationChance;
+        this.crossoverChance = crossoverChance;
+        this.nofMixes = nofMixes;
+        this.drawingService = drawingService;
+        this.savingService = savingService;
+        this.agents = this.populator.createPopulation(this.populationConfig);
     }
-  }
 
-  loadProgress(): void {
-    if (this.savingService) {
-      if (this.savingService.load(this)) {
-        LoggerService.error("Saving service is not defined.");
-      }
-    } else {
-      LoggerService.error("Saving service is not defined.");
+    draw(
+        outputImage: JimpImageInterface,
+        outputImageConfig: OutputImageConfigType
+    ): void {
+        if (this.drawingService) {
+            this.drawingService.draw(this.agents, outputImage, outputImageConfig);
+        } else {
+            LoggerService.error("Drawing service is not defined.");
+        }
     }
-  }
 
-  saveProgress(): void {
-    if (this.savingService) {
-      this.savingService.save(this);
-    } else {
-      LoggerService.error("Saving service is not defined.");
+    loadProgress(): void {
+        if (this.savingService) {
+            if (this.savingService.load(this)) {
+                LoggerService.error("Saving service is not defined.");
+            }
+        } else {
+            LoggerService.error("Saving service is not defined.");
+        }
     }
-  }
 
-  getProgressToSave<AgentInterface>(): Array<AgentInterface> {
-    return <Array<AgentInterface>>this.agents;
-  }
-
-  startMixing(): void {
-    if (this.mixer) {
-      this.mixer.mix(
-        this.agents,
-        this.mutator,
-        this.crosser,
-        this.evaluator,
-        this.referenceImage,
-        this.mutationChance,
-        this.crossoverChance
-      );
-    } else {
-      LoggerService.error("Mixer is not defined.");
+    saveProgress(): void {
+        if (this.savingService) {
+            this.savingService.save(this);
+        } else {
+            LoggerService.error("Saving service is not defined.");
+        }
     }
-  }
+
+    getProgressToSave<AgentInterface>(): Array<AgentInterface> {
+        return <Array<AgentInterface>>this.agents;
+    }
+
+    startMixing(): void {
+        if (
+            !this.mutator ||
+            !this.crosser ||
+            !this.evaluator ||
+            !this.referenceImage ||
+            !this.mutationChance ||
+            !this.crossoverChance
+        ) {
+            LoggerService.error(
+                "Cauldron is not ready yet. Initialize mutator, crosser, evaluator, referenceImage, mutationChance and crossoverChance"
+            );
+            return;
+        }
+
+        if (this.mixer) {
+            this.mixer.mix(
+                this.agents,
+                this.mutator,
+                this.crosser,
+                this.evaluator,
+                this.referenceImage,
+                this.mutationChance,
+                this.crossoverChance,
+                this.nofMixes
+            );
+        } else {
+            LoggerService.error("Mixer is not defined.");
+        }
+    }
 }
 
 export default Cauldron;

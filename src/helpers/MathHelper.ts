@@ -11,7 +11,7 @@ class MathHelper {
     }
 
     public static rand(max: number, min: number = 0): number {
-        return Math.random() * ((max + 1) - min) + min;
+        return Math.random() * (max + 1 - min) + min;
     }
 
     public static lerp(start: number, end: number, t: number): number {

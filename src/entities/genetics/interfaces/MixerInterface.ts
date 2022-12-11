@@ -7,12 +7,13 @@ import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 interface MixerInterface {
     mix(
         agents: Array<AgentInterface>,
-        mutator: MutatorInterface | undefined,
-        crosser: CrosserInterface | undefined,
-        evaluator: EvaluatorInterface | undefined,
-        referenceImage: JimpImageInterface | undefined,
-        mutationChance: number | undefined,
-        crossOverChance: number | undefined
+        mutator: MutatorInterface,
+        crosser: CrosserInterface,
+        evaluator: EvaluatorInterface,
+        referenceImage: JimpImageInterface,
+        mutationChance: number,
+        crossOverChance: number,
+        nofMixes: number
     ): void;
 }
 

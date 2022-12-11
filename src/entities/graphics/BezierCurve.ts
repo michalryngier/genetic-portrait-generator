@@ -34,12 +34,17 @@ class BezierCurve implements BezierCurveInterface {
         thickness: number = 1,
         bezierPoints: number = 100
     ): BezierCurveInterface {
-        let start = new Point(MathHelper.rand(maxPoint.x), MathHelper.rand(maxPoint.y)),
+        let start = new Point(
+                MathHelper.rand(maxPoint.x),
+                MathHelper.rand(maxPoint.y)
+            ),
             end = new Point(MathHelper.rand(maxPoint.x), MathHelper.rand(maxPoint.y)),
             points: Array<PointInterface> = [];
 
         for (let i = 0; i < nofPoints; i++) {
-            points.push(new Point(MathHelper.rand(maxPoint.x), MathHelper.rand(maxPoint.y)));
+            points.push(
+                new Point(MathHelper.rand(maxPoint.x), MathHelper.rand(maxPoint.y))
+            );
         }
 
         return new BezierCurve(start, end, points, thickness, bezierPoints);
@@ -47,16 +52,15 @@ class BezierCurve implements BezierCurveInterface {
 
     getPoint(t: number): PointInterface {
         let points: any = [];
-        this.points.forEach((p: PointInterface) => points.push(new Point(p.x, p.y)));
-
-        return this.interpolate(
-            t,
-            [
-                new Point(this.start.x, this.start.y),
-                ...points,
-                new Point(this.end.x, this.end.y)
-            ]
+        this.points.forEach((p: PointInterface) =>
+            points.push(new Point(p.x, p.y))
         );
+
+        return this.interpolate(t, [
+            new Point(this.start.x, this.start.y),
+            ...points,
+            new Point(this.end.x, this.end.y),
+        ]);
     }
 
     setProperties(
@@ -73,7 +77,7 @@ class BezierCurve implements BezierCurveInterface {
 
     interpolate(t: number, points: Array<PointInterface>): PointInterface {
         let order = points.length - 1;
-        let v: Array<PointInterface> = _.cloneDeep(points)
+        let v: Array<PointInterface> = _.cloneDeep(points);
 
         for (let i = order; i > 0; i--) {
             for (let j = 0; j < order; j++) {
@@ -108,7 +112,10 @@ class BezierCurve implements BezierCurveInterface {
         if (!binaryRepresentation) {
             return;
         }
-        let chunks: Array<string> | Array<number> = StringHelper.chunkString(binaryRepresentation, ALLELE_LENGTH);
+        let chunks: Array<string> | Array<number> = StringHelper.chunkString(
+            binaryRepresentation,
+            ALLELE_LENGTH
+        );
         chunks = chunks.map((el) => ColorHelper.binaryToDec(el));
 
         const start = new Point(chunks.shift(), chunks.shift());

@@ -8,7 +8,11 @@ class StringHelper {
         return str;
     }
 
-    static replaceStringFromIndex(str: string, replaceWith: string, startingAt: number): string {
+    static replaceStringFromIndex(
+        str: string,
+        replaceWith: string,
+        startingAt: number
+    ): string {
         let index = 0,
             newStr = str.slice(0, startingAt);
 

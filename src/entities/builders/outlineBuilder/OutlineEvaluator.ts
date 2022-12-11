@@ -4,14 +4,13 @@ import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import EvaluatorFunctionType from "../../genetics/types/EvaluatorFunctionType";
 import FitnessFunctionInterface from "../../genetics/interfaces/FitnessFunctionInterface";
 
-
 class OutlineEvaluator implements EvaluatorInterface {
     fitnessFunctions: Array<EvaluatorFunctionType>;
     evaluator: FitnessFunctionInterface | null;
 
     constructor(fitnessFunctions: Array<EvaluatorFunctionType>) {
         this.fitnessFunctions = fitnessFunctions;
-        this.evaluator = this.createEvaluator()
+        this.evaluator = this.createEvaluator();
     }
 
     evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): void {

@@ -6,7 +6,6 @@ class Agent implements AgentInterface {
     fitnessScore: number = 0;
     geneticRepresentation: string | undefined;
 
-
     constructor(bezierCurve: BezierCurveInterface) {
         this.bezierCurve = bezierCurve;
         this.buildGeneticRepresentation();
@@ -16,7 +15,7 @@ class Agent implements AgentInterface {
         this.geneticRepresentation = this.bezierCurve.asBinary();
     }
 
-    getUpdatedBezierCurve(): BezierCurveInterface{
+    getUpdatedBezierCurve(): BezierCurveInterface {
         this.updateBezierCurve();
 
         return this.bezierCurve;

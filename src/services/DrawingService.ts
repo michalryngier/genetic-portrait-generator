@@ -5,28 +5,28 @@ import OutputImageConfigType from "../entities/graphics/types/OutputImageConfigT
 import ColorHelper from "../helpers/ColorHelper";
 
 class DrawingService implements DrawingServiceInterface {
-  draw(
-    agents: Array<AgentInterface>,
-    image: JimpImageInterface,
-    config: OutputImageConfigType
-  ): void {
-    agents.forEach((agent: AgentInterface) => {
-      image.drawBezier(
-        agent.getUpdatedBezierCurve(),
-        config.scale,
-        this.getColor(config?.color ?? null),
-        config?.lerpColor ?? false
-      );
-    });
-  }
-
-  private getColor(color: string | null) {
-    if (color) {
-      return ColorHelper.getColorFromHex(color);
+    draw(
+        agents: Array<AgentInterface>,
+        image: JimpImageInterface,
+        config: OutputImageConfigType
+    ): void {
+        agents.forEach((agent: AgentInterface) => {
+            image.drawBezier(
+                agent.getUpdatedBezierCurve(),
+                config.scale,
+                this.getColor(config?.color ?? null),
+                config?.lerpColor ?? false
+            );
+        });
     }
 
-    return ColorHelper.white;
-  }
+    private getColor(color: string | null) {
+        if (color) {
+            return ColorHelper.getColorFromHex(color);
+        }
+
+        return ColorHelper.white;
+    }
 }
 
 export default DrawingService;

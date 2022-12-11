@@ -5,39 +5,43 @@ import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 
 interface BuilderInterface {
-  picture: PictureInterface | undefined;
-  outputImage: JimpImageInterface | undefined;
-  cauldron: OutlineCauldron | undefined;
-  populationConfig: PopulationType | undefined;
-  outputImageConfig: OutputImageConfigType | undefined;
+    picture: PictureInterface | undefined;
+    outputImage: JimpImageInterface | undefined;
+    cauldron: OutlineCauldron | undefined;
+    populationConfig: PopulationType | undefined;
+    outputImageConfig: OutputImageConfigType | undefined;
 
-  mutationChance: number;
+    mutationChance: number;
 
-  crossoverChance: number;
+    crossoverChance: number;
 
-  setOutputImageConfig(outputImageConfig: OutputImageConfigType): void;
+    nofMixes: number;
 
-  setChances(crossoverChance: number, mutationChance: number): void;
+    setOutputImageConfig(outputImageConfig: OutputImageConfigType): void;
 
-  createPicture(imageUrl: string, useRawImage: boolean): void;
+    setChances(crossoverChance: number, mutationChance: number): void;
 
-  setOutputImage(outputImage: JimpImageInterface): void;
+    setNumberOfMixes(numberOfMixes: number): void;
 
-  createOutputImage(): void;
+    createPicture(imageUrl: string, useRawImage: boolean): void;
 
-  setPopulationConfig(populationConfig: PopulationType): void;
+    setOutputImage(outputImage: JimpImageInterface): void;
 
-  createCauldron(): void;
+    createOutputImage(): void;
 
-  startCauldron(): void;
+    setPopulationConfig(populationConfig: PopulationType): void;
 
-  saveImage(path: string): void;
+    createCauldron(): void;
 
-  getBase64Image(): string | Error;
+    startCauldron(): void;
 
-  saveProgress(): void;
+    saveImage(path: string): void;
 
-  loadProgress(): void;
+    getBase64Image(): string | Error;
+
+    saveProgress(): void;
+
+    loadProgress(): void;
 }
 
 export default BuilderInterface;

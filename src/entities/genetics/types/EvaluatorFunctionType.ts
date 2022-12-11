@@ -2,7 +2,7 @@ import OutlineFitnessFunction from "../../builders/outlineBuilder/OutlineFitness
 
 type EvaluatorFunctionType = {
     fn: typeof OutlineFitnessFunction;
-    weight: number
-}
+    weight: number;
+};
 
 export default EvaluatorFunctionType;

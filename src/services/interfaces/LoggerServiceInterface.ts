@@ -1,7 +1,7 @@
 import LoggerInterface from "./LoggerInterface";
 
 interface LoggerServiceInterface {
-    get logger(): LoggerInterface;
+    get loggers(): Array<LoggerInterface>;
 }
 
 export default LoggerServiceInterface;

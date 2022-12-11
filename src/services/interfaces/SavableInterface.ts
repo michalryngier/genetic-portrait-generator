@@ -3,7 +3,7 @@ interface SavableInterface {
 
     loadProgress(): void;
 
-    getProgressToSave<T>(): Array<T>
+    getProgressToSave<T>(): Array<T>;
 }
 
 export default SavableInterface;

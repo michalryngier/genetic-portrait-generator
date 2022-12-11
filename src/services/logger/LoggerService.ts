@@ -9,48 +9,48 @@ class LoggerService implements LoggerServiceInterface {
     public static SHOW_ERRORS = true;
     public static SHOW_LOADING = true;
 
-    get logger(): LoggerInterface {
-        return LoggerService._logger;
+    get loggers(): Array<LoggerInterface> {
+        return LoggerService._loggers;
     }
 
-    public static _logger: LoggerInterface = new ConsoleLogger();
+    public static _loggers: Array<LoggerInterface> = [new ConsoleLogger()];
     private static instance: LoggerServiceInterface | undefined;
 
-    private static getLogger(): LoggerInterface {
+    private static getLoggers(): Array<LoggerInterface> {
         if (!this.instance) {
-            this.instance = new LoggerService()
+            this.instance = new LoggerService();
         }
 
-        return this.instance.logger;
+        return this.instance.loggers;
     }
 
     public static log(msg: string): void {
         if (this.SHOW_LOGS) {
-            this.getLogger().log(msg);
+            this.getLoggers().forEach((logger) => logger.log(msg));
         }
     }
 
     public static debug(msg: string): void {
         if (this.SHOW_DEBUGS) {
-            this.getLogger().debug(msg);
+            this.getLoggers().forEach((logger) => logger.debug(msg));
         }
     }
 
     public static warn(msg: string): void {
         if (this.SHOW_WARNS) {
-            this.getLogger().warn(msg);
+            this.getLoggers().forEach((logger) => logger.warn(msg));
         }
     }
 
     public static error(msg: string): void {
         if (this.SHOW_ERRORS) {
-            this.getLogger().error(msg);
+            this.getLoggers().forEach((logger) => logger.error(msg));
         }
     }
 
     public static loading(msg: string): void {
         if (this.SHOW_LOADING) {
-            this.getLogger().loading(msg);
+            this.getLoggers().forEach((logger) => logger.loading(msg));
         }
     }
 }

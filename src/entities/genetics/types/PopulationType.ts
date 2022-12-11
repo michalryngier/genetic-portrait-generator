@@ -8,6 +8,6 @@ type PopulationType = {
     thicknessMin: number;
     bezierPoints: number;
     size: number;
-}
+};
 
 export default PopulationType;

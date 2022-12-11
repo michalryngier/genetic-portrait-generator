@@ -105,7 +105,9 @@ class Picture implements PictureInterface {
         });
     }
 
-    private getAsyncOriginalImage(tries: number = 0): Promise<JimpImageInterface> {
+    private getAsyncOriginalImage(
+        tries: number = 0
+    ): Promise<JimpImageInterface> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (tries >= 1000 / 50) {

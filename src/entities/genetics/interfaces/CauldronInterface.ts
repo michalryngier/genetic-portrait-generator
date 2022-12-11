@@ -11,25 +11,27 @@ import DrawingServiceInterface from "../../../services/interfaces/DrawingService
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 
 interface CauldronInterface {
-  agents: Array<AgentInterface>;
-  mutator: MutatorInterface | undefined;
-  crosser: CrosserInterface | undefined;
-  evaluator: EvaluatorInterface | undefined;
-  mixer: MixerInterface | undefined;
-  referenceImage: JimpImageInterface | undefined;
-  populationConfig: PopulationType | undefined;
-  populator: PopulatorInterface | undefined;
-  savingService: SavingServiceInterface | undefined;
-  drawingService: DrawingServiceInterface | undefined;
-  mutationChance: number | undefined;
-  crossoverChance: number | undefined;
+    agents: Array<AgentInterface>;
+    mutator: MutatorInterface | undefined;
+    crosser: CrosserInterface | undefined;
+    evaluator: EvaluatorInterface | undefined;
+    mixer: MixerInterface | undefined;
+    referenceImage: JimpImageInterface | undefined;
+    populationConfig: PopulationType | undefined;
+    populator: PopulatorInterface | undefined;
+    savingService: SavingServiceInterface | undefined;
+    drawingService: DrawingServiceInterface | undefined;
+    mutationChance: number | undefined;
+    crossoverChance: number | undefined;
 
-  startMixing(): void;
+    nofMixes: number;
 
-  draw(
-    outputImage: JimpImageInterface,
-    outputImageConfig: OutputImageConfigType
-  ): void;
+    startMixing(): void;
+
+    draw(
+        outputImage: JimpImageInterface,
+        outputImageConfig: OutputImageConfigType
+    ): void;
 }
 
 export default CauldronInterface;

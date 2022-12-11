@@ -10,7 +10,12 @@ class ColorHelper {
     public static transparent = Jimp.rgbaToInt(0, 0, 0, 0);
 
     public static getRandomColor(alpha: number = 255): number {
-        return Jimp.rgbaToInt(MathHelper.rand(255), MathHelper.rand(255), MathHelper.rand(255), alpha);
+        return Jimp.rgbaToInt(
+            MathHelper.rand(255),
+            MathHelper.rand(255),
+            MathHelper.rand(255),
+            alpha
+        );
     }
 
     public static getColorWithAlpha(color: number, alpha = 255): number {
@@ -20,11 +25,12 @@ class ColorHelper {
     }
 
     public static getColorFromHex(hex: string) {
-        hex = hex.replace(/#/gi, '');
+        hex = hex.replace(/#/gi, "");
         if (hex.length === 6) {
             hex += "ff";
         }
-        let decimal = this.hexToDec(hex), color = Jimp.intToRGBA(decimal);
+        let decimal = this.hexToDec(hex),
+            color = Jimp.intToRGBA(decimal);
 
         return Jimp.rgbaToInt(color.r, color.g, color.b, color.a);
     }
