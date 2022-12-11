@@ -6,7 +6,7 @@ import AgentInterface from "../../genetics/interfaces/AgentInterface";
 import MutatorInterface from "../../genetics/interfaces/MutatorInterface";
 import LoggerService from "../../../services/logger/LoggerService";
 
-class OutlineMixer implements MixerInterface {
+class NoiseMixer implements MixerInterface {
     mix(
         agents: Array<AgentInterface>,
         mutator: MutatorInterface,
@@ -26,4 +26,4 @@ class OutlineMixer implements MixerInterface {
     }
 }
 
-export default OutlineMixer;
+export default NoiseMixer;

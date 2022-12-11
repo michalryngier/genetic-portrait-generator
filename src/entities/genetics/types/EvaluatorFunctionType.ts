@@ -1,7 +1,7 @@
-import OutlineFitnessFunction from "../../builders/outlineBuilder/OutlineFitnessFunction";
+import NoiseFitnessFunction from "../../builders/noiseBuilder/NoiseFitnessFunction";
 
 type EvaluatorFunctionType = {
-    fn: typeof OutlineFitnessFunction;
+    fn: typeof NoiseFitnessFunction;
     weight: number;
 };
 

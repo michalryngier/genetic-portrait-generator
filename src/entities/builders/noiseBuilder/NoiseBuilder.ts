@@ -1,25 +1,25 @@
-import OutlineMixer from "./OutlineMixer";
+import NoiseMixer from "./NoiseMixer";
 import Picture from "../../graphics/Picture";
-import OutlineMutator from "./OutlineMutator";
-import OutlineCrosser from "./OutlineCrosser";
-import OutlineCauldron from "./OutlineCauldron";
+import NoiseMutator from "./NoiseMutator";
+import NoiseCrosser from "./NoiseCrosser";
+import NoiseCauldron from "./NoiseCauldron";
 import JimpImage from "../../graphics/JimpImage";
-import OutlinePopulator from "./OutlinePopulator";
-import OutlineEvaluator from "./OutlineEvaluator";
+import NoisePopulator from "./NoisePopulator";
+import NoiseEvaluator from "./NoiseEvaluator";
 import SavingService from "../../../services/SavingService";
 import BuilderInterface from "../interfaces/BuilderInterface";
 import DrawingService from "../../../services/DrawingService";
-import OutlineFitnessFunction from "./OutlineFitnessFunction";
+import NoiseFitnessFunction from "./NoiseFitnessFunction";
 import PopulationType from "../../genetics/types/PopulationType";
 import LoggerService from "../../../services/logger/LoggerService";
 import PictureInterface from "../../graphics/interfaces/PictureInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 
-class OutlineBuilder implements BuilderInterface {
+class NoiseBuilder implements BuilderInterface {
     picture: PictureInterface | undefined;
     outputImage: JimpImageInterface | undefined;
-    cauldron: OutlineCauldron | undefined;
+    cauldron: NoiseCauldron | undefined;
     populationConfig: PopulationType | undefined;
     outputImageConfig: OutputImageConfigType | undefined;
 
@@ -40,14 +40,14 @@ class OutlineBuilder implements BuilderInterface {
             return;
         }
 
-        this.cauldron = new OutlineCauldron(
+        this.cauldron = new NoiseCauldron(
             this.populationConfig,
-            new OutlinePopulator(),
+            new NoisePopulator(),
             this.picture._em,
-            new OutlineMixer(),
-            new OutlineEvaluator([{weight: 1, fn: OutlineFitnessFunction}]),
-            new OutlineMutator(),
-            new OutlineCrosser(),
+            new NoiseMixer(),
+            new NoiseEvaluator([{weight: 1, fn: NoiseFitnessFunction}]),
+            new NoiseMutator(),
+            new NoiseCrosser(),
             this.mutationChance,
             this.crossoverChance,
             this.nofMixes,
@@ -160,4 +160,4 @@ class OutlineBuilder implements BuilderInterface {
     }
 }
 
-export default OutlineBuilder;
+export default NoiseBuilder;

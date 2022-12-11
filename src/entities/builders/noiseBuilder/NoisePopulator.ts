@@ -2,7 +2,7 @@ import PopulationType from "../../genetics/types/PopulationType";
 import AgentInterface from "../../genetics/interfaces/AgentInterface";
 import PopulatorInterface from "../../genetics/interfaces/PopulatorInterface";
 
-class OutlinePopulator implements PopulatorInterface {
+class NoisePopulator implements PopulatorInterface {
     createPopulation(
         populationConfig: PopulationType | undefined
     ): Array<AgentInterface> {
@@ -10,4 +10,4 @@ class OutlinePopulator implements PopulatorInterface {
     }
 }
 
-export default OutlinePopulator;
+export default NoisePopulator;

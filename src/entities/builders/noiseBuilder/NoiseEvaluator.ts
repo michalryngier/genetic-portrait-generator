@@ -4,7 +4,7 @@ import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import EvaluatorFunctionType from "../../genetics/types/EvaluatorFunctionType";
 import FitnessFunctionInterface from "../../genetics/interfaces/FitnessFunctionInterface";
 
-class OutlineEvaluator implements EvaluatorInterface {
+class NoiseEvaluator implements EvaluatorInterface {
     fitnessFunctions: Array<EvaluatorFunctionType>;
     evaluator: FitnessFunctionInterface | null;
 
@@ -31,4 +31,4 @@ class OutlineEvaluator implements EvaluatorInterface {
     }
 }
 
-export default OutlineEvaluator;
+export default NoiseEvaluator;

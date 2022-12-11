@@ -1,4 +1,4 @@
-import OutlineCauldron from "../outlineBuilder/OutlineCauldron";
+import NoiseCauldron from "../noiseBuilder/NoiseCauldron";
 import PopulationType from "../../genetics/types/PopulationType";
 import PictureInterface from "../../graphics/interfaces/PictureInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
@@ -7,7 +7,7 @@ import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 interface BuilderInterface {
     picture: PictureInterface | undefined;
     outputImage: JimpImageInterface | undefined;
-    cauldron: OutlineCauldron | undefined;
+    cauldron: NoiseCauldron | undefined;
     populationConfig: PopulationType | undefined;
     outputImageConfig: OutputImageConfigType | undefined;
 

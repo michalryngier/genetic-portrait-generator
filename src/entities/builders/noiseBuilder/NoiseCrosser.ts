@@ -1,7 +1,7 @@
 import CrosserInterface from "../../genetics/interfaces/CrosserInterface";
 import AgentInterface from "../../genetics/interfaces/AgentInterface";
 
-class OutlineCrosser implements CrosserInterface {
+class NoiseCrosser implements CrosserInterface {
     crossover(
         agent1: AgentInterface,
         agent2: AgentInterface,
@@ -11,4 +11,4 @@ class OutlineCrosser implements CrosserInterface {
     }
 }
 
-export default OutlineCrosser;
+export default NoiseCrosser;
