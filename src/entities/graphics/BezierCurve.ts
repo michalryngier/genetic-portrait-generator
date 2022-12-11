@@ -3,6 +3,8 @@ import _ from "lodash";
 import MathHelper from "../../helpers/MathHelper";
 import PointInterface from "./interfaces/PointInterface";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
+import ColorHelper from "../../helpers/ColorHelper";
+import StringHelper from "../../helpers/StringHelper";
 
 class BezierCurve implements BezierCurveInterface {
     public start: PointInterface = new Point(0, 0);
@@ -80,5 +82,40 @@ class BezierCurve implements BezierCurveInterface {
         }
 
         return v[0];
+    }
+
+    asBinary(): string {
+        const ALLELE_LENGTH = 64;
+
+        let startX = ColorHelper.decToBinary(this.start.x, ALLELE_LENGTH);
+        let startY = ColorHelper.decToBinary(this.start.y, ALLELE_LENGTH);
+        let endX = ColorHelper.decToBinary(this.end.x, ALLELE_LENGTH);
+        let endY = ColorHelper.decToBinary(this.end.y, ALLELE_LENGTH);
+
+        let points: Array<string> = [];
+        this.points.forEach((point: PointInterface) => {
+            points.push(ColorHelper.decToBinary(point.x, ALLELE_LENGTH));
+            points.push(ColorHelper.decToBinary(point.y, ALLELE_LENGTH));
+        });
+
+        return startX + startY + endX + endY + points.join("");
+    }
+
+    updateFromBinary(binaryRepresentation: string | undefined): void {
+        const ALLELE_LENGTH = 64;
+
+        if (!binaryRepresentation) {
+            return;
+        }
+        let chunks: Array<string> | Array<number> = StringHelper.chunkString(binaryRepresentation, ALLELE_LENGTH);
+        chunks = chunks.map((el) => ColorHelper.binaryToDec(el));
+
+        const start = new Point(chunks.shift(), chunks.shift());
+        const end = new Point(chunks.shift(), chunks.shift());
+        const points = _.chunk(chunks, 2).map((chunk) => {
+            return new Point(chunk[0], chunk[1]);
+        });
+
+        this.setProperties(start, end, points, null);
     }
 }

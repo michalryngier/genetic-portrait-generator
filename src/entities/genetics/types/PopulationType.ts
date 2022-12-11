@@ -1,6 +1,6 @@
 import PointInterface from "../../graphics/interfaces/PointInterface";
 
-interface PopulationInterface {
+type PopulationType = {
     maxPoint: PointInterface;
     nofPointMax: number;
     nofPointsMin: number;
@@ -10,4 +10,4 @@ interface PopulationInterface {
     size: number;
 }
 
-export default PopulationInterface;
+export default PopulationType;

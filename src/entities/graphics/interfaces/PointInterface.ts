@@ -1,6 +1,6 @@
-interface Point {
+interface PointInterface {
     x: number;
     y: number;
 }
 
-export default Point;
+export default PointInterface;

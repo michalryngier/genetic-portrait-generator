@@ -17,6 +17,10 @@ interface BezierCurveInterface {
     ): void
 
     interpolate(t: number, points: Array<PointInterface>): PointInterface
+
+    asBinary(): string;
+
+    updateFromBinary(binaryRepresentation: string | undefined): void;
 }
 
 export default BezierCurveInterface;

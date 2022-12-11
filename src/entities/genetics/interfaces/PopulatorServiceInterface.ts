@@ -1,8 +1,8 @@
 import AgentInterface from "./AgentInterface";
-import PopulationInterface from "./PopulationInterface";
+import PopulationType from "../types/PopulationType";
 
 interface PopulatorServiceInterface {
-    createPopulation(populationConfig: PopulationInterface | undefined): Array<AgentInterface>
+    createPopulation(populationConfig: PopulationType | undefined): Array<AgentInterface>
 }
 
 export default PopulatorServiceInterface;
