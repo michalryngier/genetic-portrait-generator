@@ -28,6 +28,24 @@ class MathHelper {
         }
         return Math.abs((value - min) / (max - min));
     }
+
+    public static decToBinary(dec: number, length: number) {
+        let binary = dec.toString(2);
+        if (binary.length < length) {
+            let diff = length - binary.length,
+                prepend = "";
+            for (let i = 0; i < diff; i++) {
+                prepend += "0";
+            }
+            binary = prepend + binary;
+        }
+
+        return binary;
+    }
+
+    public static binaryToDec(binary: string) {
+        return parseInt(binary, 2);
+    }
 }
 
 export default MathHelper;

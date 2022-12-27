@@ -1,10 +1,9 @@
-import Point from "./Point";
 import _ from "lodash";
+import Point from "./Point";
 import MathHelper from "../../helpers/MathHelper";
+import StringHelper from "../../helpers/StringHelper";
 import PointInterface from "./interfaces/PointInterface";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
-import ColorHelper from "../../helpers/ColorHelper";
-import StringHelper from "../../helpers/StringHelper";
 import ConfigurationProvider from "../../providers/ConfigurationProvider";
 
 class BezierCurve implements BezierCurveInterface {
@@ -76,31 +75,81 @@ class BezierCurve implements BezierCurveInterface {
     }
 
     interpolate(t: number, points: Array<PointInterface>): PointInterface {
-        let order = points.length - 1;
-        let v: Array<PointInterface> = _.cloneDeep(points);
-
-        for (let i = order; i > 0; i--) {
-            for (let j = 0; j < order; j++) {
-                v[j].x = (1 - t) * v[j].x + t * v[j + 1].x;
-                v[j].y = (1 - t) * v[j].y + t * v[j + 1].y;
-            }
+        if (t === 0) {
+            return points[0];
         }
 
-        return v[0];
+        const order: number = points.length - 1;
+
+        if (t === 1) {
+            return points[order];
+        }
+
+        const mt: number = 1 - t;
+        let p: Array<PointInterface> = points;
+
+        // linear?
+        if (order === 1) {
+            return new Point(
+                mt * p[0].x + t * p[1].x,
+                mt * p[0].y + t * p[1].y
+            );
+        }
+
+        // quadratic/cubic curve?
+        if (order >= 2 && order < 4) {
+            let mt2: number = mt * mt,
+                t2: number = t * t,
+                a: number,
+                b: number,
+                c: number,
+                d: number = 0;
+
+            if (order === 2) {
+                p = [p[0], p[1], p[2], new Point(0, 0)];
+                a = mt2;
+                b = mt * t * 2;
+                c = t2;
+            } else {
+                a = mt2 * mt;
+                b = mt2 * t * 3;
+                c = mt * t2 * 3;
+                d = t * t2;
+            }
+
+            return new Point(
+                a * p[0].x + b * p[1].x + c * p[2].x + d * p[3].x,
+                a * p[0].y + b * p[1].y + c * p[2].y + d * p[3].y
+            );
+        }
+
+        // higher order curves: use de Casteljau's computation
+        const dCpts: Array<PointInterface> = _.cloneDeep(points);
+        while (dCpts.length > 1) {
+            for (let i = 0; i < dCpts.length - 1; i++) {
+                dCpts[i] = new Point(
+                    dCpts[i].x + (dCpts[i + 1].x - dCpts[i].x) * t,
+                    dCpts[i].y + (dCpts[i + 1].y - dCpts[i].y) * t,
+                );
+            }
+            dCpts.splice(dCpts.length - 1, 1);
+        }
+
+        return dCpts[0];
     }
 
     asBinary(): string {
         const ALLELE_LENGTH = ConfigurationProvider.ALLELE_LENGTH;
 
-        let startX = ColorHelper.decToBinary(this.start.x, ALLELE_LENGTH);
-        let startY = ColorHelper.decToBinary(this.start.y, ALLELE_LENGTH);
-        let endX = ColorHelper.decToBinary(this.end.x, ALLELE_LENGTH);
-        let endY = ColorHelper.decToBinary(this.end.y, ALLELE_LENGTH);
+        let startX = MathHelper.decToBinary(this.start.x, ALLELE_LENGTH);
+        let startY = MathHelper.decToBinary(this.start.y, ALLELE_LENGTH);
+        let endX = MathHelper.decToBinary(this.end.x, ALLELE_LENGTH);
+        let endY = MathHelper.decToBinary(this.end.y, ALLELE_LENGTH);
 
         let points: Array<string> = [];
         this.points.forEach((point: PointInterface) => {
-            points.push(ColorHelper.decToBinary(point.x, ALLELE_LENGTH));
-            points.push(ColorHelper.decToBinary(point.y, ALLELE_LENGTH));
+            points.push(MathHelper.decToBinary(point.x, ALLELE_LENGTH));
+            points.push(MathHelper.decToBinary(point.y, ALLELE_LENGTH));
         });
 
         return startX + startY + endX + endY + points.join("");
@@ -116,7 +165,7 @@ class BezierCurve implements BezierCurveInterface {
             binaryRepresentation,
             ALLELE_LENGTH
         );
-        chunks = chunks.map((el) => ColorHelper.binaryToDec(el));
+        chunks = chunks.map((el) => MathHelper.binaryToDec(el));
 
         const start = new Point(chunks.shift(), chunks.shift());
         const end = new Point(chunks.shift(), chunks.shift());

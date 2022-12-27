@@ -13,14 +13,7 @@ class StringHelper {
         replaceWith: string,
         startingAt: number
     ): string {
-        let index = 0,
-            newStr = str.slice(0, startingAt);
-
-        for (let i = 0; i < replaceWith.length; i++, index++) {
-            newStr += replaceWith.charAt(index);
-        }
-
-        return newStr;
+        return str.slice(0, startingAt) + replaceWith;
     }
 
     static chunkString(str: string, size: number): Array<string> {

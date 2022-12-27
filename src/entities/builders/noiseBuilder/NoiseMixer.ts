@@ -56,7 +56,9 @@ class NoiseMixer implements MixerInterface {
             usedIndexes.push(agent2Index);
 
             if (agent1 && agent2) {
-                [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
+                if (crossOverChance > MathHelper.rand(1)) {
+                    [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
+                }
             }
         }
     }
