@@ -1,0 +1,1 @@
+{"version":3,"file":"Point.js","sourceRoot":"","sources":["../../../src/entities/graphics/Point.ts"],"names":[],"mappings":";;AAEA,MAAM,KAAK;IAIP,YAAY,IAAwB,CAAC,EAAE,IAAwB,CAAC;QAC5D,IAAI,CAAC,CAAC,GAAG,CAAC,aAAD,CAAC,cAAD,CAAC,GAAI,CAAC,CAAC;QAChB,IAAI,CAAC,CAAC,GAAG,CAAC,aAAD,CAAC,cAAD,CAAC,GAAI,CAAC,CAAC;IACpB,CAAC;CACJ;AAED,kBAAe,KAAK,CAAC"}
