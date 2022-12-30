@@ -19,11 +19,11 @@ interface BuilderInterface {
 
     setOutputImageConfig(outputImageConfig: OutputImageConfigType): void;
 
-    setChances(crossoverChance: number, mutationChance: number): void;
+    setChances(crossoverChance: number | null, mutationChance: number | null): void;
 
-    setNumberOfMixes(numberOfMixes: number): void;
+    setNumberOfMixes(numberOfMixes: number | null): void;
 
-    createPicture(imageUrl: string, useRawImage: boolean): void;
+    createPicture(imageUrl: string, useRawImage: boolean): Promise<void>;
 
     setOutputImage(outputImage: JimpImageInterface): void;
 

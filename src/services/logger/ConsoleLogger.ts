@@ -10,7 +10,23 @@ class ConsoleLogger implements LoggerInterface {
     }
 
     loading(msg: string): void {
-        console.log(msg);
+        const percentage = Number.parseInt(msg);
+        console.clear();
+        let loadingBar = "";
+        loadingBar += createString("▓", Math.round(percentage));
+        loadingBar += createString("░", 100 - Math.round(percentage));
+        loadingBar += "  " + Math.round(percentage * 100) / 100 + "%";
+        console.debug(loadingBar);
+        console.log();
+
+        function createString(char: string, len: number) {
+            let str = "";
+            for (let i = 0; i < len; i++) {
+                str += char;
+            }
+
+            return str;
+        }
     }
 
     log(msg: string): void {

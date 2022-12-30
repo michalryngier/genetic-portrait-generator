@@ -1,0 +1,1 @@
+{"version":3,"file":"SavingService.d.ts","sourceRoot":"","sources":["../../src/services/SavingService.ts"],"names":[],"mappings":"AAAA,OAAO,sBAAsB,MAAM,qCAAqC,CAAC;AACzE,OAAO,gBAAgB,MAAM,+BAA+B,CAAC;AAE7D,cAAM,aAAc,YAAW,sBAAsB;IACjD,IAAI,CAAC,MAAM,EAAE,gBAAgB,GAAG,OAAO;IAIvC,IAAI,CAAC,MAAM,EAAE,gBAAgB,GAAG,OAAO;CAG1C;AAED,eAAe,aAAa,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"EvaluatorFunctionType.d.ts","sourceRoot":"","sources":["../../../../src/entities/genetics/types/EvaluatorFunctionType.ts"],"names":[],"mappings":"AAAA,OAAO,oBAAoB,MAAM,kDAAkD,CAAC;AAEpF,KAAK,qBAAqB,GAAG;IACzB,EAAE,EAAE,OAAO,oBAAoB,CAAC;IAChC,MAAM,EAAE,MAAM,CAAC;CAClB,CAAC;AAEF,eAAe,qBAAqB,CAAC"}

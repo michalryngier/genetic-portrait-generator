@@ -5,6 +5,12 @@ import OutputImageConfigType from "../entities/graphics/types/OutputImageConfigT
 import ColorHelper from "../helpers/ColorHelper";
 
 class DrawingService implements DrawingServiceInterface {
+
+    originalImage: JimpImageInterface;
+
+    constructor(originalImage: JimpImageInterface) {
+        this.originalImage = originalImage;
+    }
     draw(
         agents: Array<AgentInterface>,
         image: JimpImageInterface,
@@ -13,9 +19,10 @@ class DrawingService implements DrawingServiceInterface {
         agents.forEach((agent: AgentInterface) => {
             image.drawBezier(
                 agent.getUpdatedBezierCurve(),
+                this.originalImage,
                 config.scale,
                 this.getColor(config?.color ?? null),
-                config?.lerpColor ?? false
+                config?.lerpColor ?? false,
             );
         });
     }
@@ -25,7 +32,7 @@ class DrawingService implements DrawingServiceInterface {
             return ColorHelper.getColorFromHex(color);
         }
 
-        return ColorHelper.white;
+        return null;
     }
 }
 

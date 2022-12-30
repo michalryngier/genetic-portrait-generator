@@ -47,7 +47,6 @@ const KERNELS = [
 ];
 
 class Picture implements PictureInterface {
-    _bi: JimpImageInterface | null = null;
     _em: JimpImageInterface | null = null;
     _oi: JimpImageInterface | null = null;
     imageUrl: string;
@@ -62,12 +61,12 @@ class Picture implements PictureInterface {
 
     init(): void {
         this.createEdgeMatrix();
-        this.createBinary();
     }
 
-    get binaryImage(): Promise<JimpImageInterface | null> {
-        return this.getAsyncBinaryImage().catch(() => null);
+    public async waitForInit(): Promise<void> {
+        await Promise.all([this.edgeMatrix, this.originalImage]);
     }
+
 
     get edgeMatrix(): Promise<JimpImageInterface | null> {
         return this.getAsyncEdgeMatrix().catch(() => null);
@@ -81,7 +80,7 @@ class Picture implements PictureInterface {
         const jimp = Jimp.read(this.imageUrl);
 
         jimp.then((image) => {
-            this._oi = new JimpImage(image);
+            this._oi = new JimpImage(image.clone());
             if (!this.useRawImage) {
                 image.greyscale();
                 image.contrast(1);
@@ -90,18 +89,6 @@ class Picture implements PictureInterface {
                 }
             }
             this._em = new JimpImage(image);
-        });
-    }
-
-    private createBinary() {
-        const jimp = Jimp.read(this.imageUrl);
-
-        jimp.then((image) => {
-            if (!this.useRawImage) {
-                image.greyscale();
-                image.contrast(1);
-            }
-            this._bi = new JimpImage(image);
         });
     }
 
@@ -130,20 +117,6 @@ class Picture implements PictureInterface {
                     resolve(this.getAsyncEdgeMatrix(++tries));
                 } else {
                     resolve(this._em);
-                }
-            }, 50);
-        });
-    }
-
-    private getAsyncBinaryImage(tries: number = 0): Promise<JimpImageInterface> {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (tries >= 1000 / 50) {
-                    reject("Rejected because of timeout.");
-                } else if (!this._bi) {
-                    resolve(this.getAsyncBinaryImage(++tries));
-                } else {
-                    resolve(this._bi);
                 }
             }, 50);
         });

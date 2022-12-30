@@ -1,0 +1,1 @@
+{"version":3,"file":"CrosserInterface.d.ts","sourceRoot":"","sources":["../../../../src/entities/genetics/interfaces/CrosserInterface.ts"],"names":[],"mappings":"AAAA,OAAO,cAAc,MAAM,kBAAkB,CAAC;AAE9C,UAAU,gBAAgB;IACtB,SAAS,CACL,MAAM,EAAE,cAAc,EACtB,MAAM,EAAE,cAAc,EACtB,eAAe,EAAE,MAAM,GACxB,CAAC,cAAc,EAAE,cAAc,CAAC,CAAC;CACvC;AAED,eAAe,gBAAgB,CAAC"}

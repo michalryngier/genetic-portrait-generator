@@ -10,8 +10,18 @@ class NoiseCrosser implements CrosserInterface {
         agent2: AgentInterface,
         crossOverChance: number
     ): [AgentInterface, AgentInterface] {
-        let gr1 = agent1.geneticRepresentation;
-        let gr2 = agent2.geneticRepresentation;
+        if (
+            crossOverChance * agent1.fitnessScore < MathHelper.rand(1) ||
+            crossOverChance * agent2.fitnessScore < MathHelper.rand(1)
+        ) {
+            return [agent1, agent2];
+        }
+
+        // let gr1 = agent1.geneticRepresentation;
+        // let gr2 = agent2.geneticRepresentation;
+
+        let gr1 = 'ABCDEFGHIJ';
+        let gr2 = '1234567890';
 
         let maxCuttingPoint = gr1.length > gr2.length ? gr1.length : gr2.length;
         let cuttingPoints = [];

@@ -131,20 +131,35 @@ class JimpImage implements JimpImageInterface {
 
     drawBezier(
         bezierCurve: BezierCurveInterface,
+        originalImage: JimpImageInterface,
         scale = 1,
-        color = ColorHelper.white,
-        lerpColor = false
+        color: number | null = null,
+        lerpColor = false,
     ): void {
+        let getColor = false;
+        if (color === null) {
+            getColor = true;
+        }
         let step = 1 / bezierCurve.bezierPoints;
         for (let t = 0; t < 1; t += step) {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
-                this.drawPoint(
-                    new Point(point.x * scale, point.y * scale),
-                    color,
-                    bezierCurve.thickness,
-                    lerpColor
-                );
+                if (getColor) {
+                    const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
+                    this.drawPoint(
+                        new Point(point.x * scale, point.y * scale),
+                        originalColor,
+                        bezierCurve.thickness,
+                        lerpColor
+                    );
+                } else if (color !== null) {
+                    this.drawPoint(
+                        new Point(point.x * scale, point.y * scale),
+                        color,
+                        bezierCurve.thickness,
+                        lerpColor
+                    );
+                }
             }
         }
     }
@@ -188,7 +203,7 @@ class JimpImage implements JimpImageInterface {
             new Jimp(
                 edgeMatrix.width * scale,
                 edgeMatrix.height * scale,
-                ColorHelper.transparent,
+                ColorHelper.black,
                 (err: Error, image: Jimp) => image
             ),
             scale

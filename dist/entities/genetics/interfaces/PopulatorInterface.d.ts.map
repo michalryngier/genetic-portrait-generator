@@ -1,0 +1,1 @@
+{"version":3,"file":"PopulatorInterface.d.ts","sourceRoot":"","sources":["../../../../src/entities/genetics/interfaces/PopulatorInterface.ts"],"names":[],"mappings":"AAAA,OAAO,cAAc,MAAM,kBAAkB,CAAC;AAC9C,OAAO,cAAc,MAAM,yBAAyB,CAAC;AAErD,UAAU,kBAAkB;IACxB,gBAAgB,CAAC,gBAAgB,EAAE,cAAc,GAAG,KAAK,CAAC,cAAc,CAAC,CAAC;CAC7E;AAED,eAAe,kBAAkB,CAAC"}

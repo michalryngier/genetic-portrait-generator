@@ -1,0 +1,1 @@
+{"version":3,"file":"LoggerServiceInterface.d.ts","sourceRoot":"","sources":["../../../src/services/interfaces/LoggerServiceInterface.ts"],"names":[],"mappings":"AAAA,OAAO,eAAe,MAAM,mBAAmB,CAAC;AAEhD,UAAU,sBAAsB;IAC5B,IAAI,OAAO,IAAI,KAAK,CAAC,eAAe,CAAC,CAAC;CACzC;AAED,eAAe,sBAAsB,CAAC"}

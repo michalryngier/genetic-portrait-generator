@@ -17,9 +17,10 @@ interface JimpImageInterface {
 
     drawBezier(
         bezierCurve: BezierCurveInterface,
+        originalImage: JimpImageInterface,
         scale: number,
-        color: number,
-        lerpColor: boolean
+        color: number | null,
+        lerpColor: boolean,
     ): void;
 }
 

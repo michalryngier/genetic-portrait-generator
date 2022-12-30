@@ -1,0 +1,1 @@
+{"version":3,"file":"SavingServiceInterface.d.ts","sourceRoot":"","sources":["../../../src/services/interfaces/SavingServiceInterface.ts"],"names":[],"mappings":"AAAA,OAAO,gBAAgB,MAAM,oBAAoB,CAAC;AAElD,UAAU,sBAAsB;IAC5B,IAAI,CAAC,MAAM,EAAE,gBAAgB,GAAG,OAAO,CAAC;IAExC,IAAI,CAAC,MAAM,EAAE,gBAAgB,GAAG,OAAO,CAAC;CAC3C;AAED,eAAe,sBAAsB,CAAC"}

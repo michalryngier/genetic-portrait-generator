@@ -24,11 +24,11 @@ class NoiseBuilder implements BuilderInterface {
     outputImageConfig: OutputImageConfigType | undefined;
 
     crossoverChance: number = 0.8;
-    mutationChance: number = 0.001;
+    mutationChance: number = 0.0001;
     nofMixes: number = 100;
 
     createCauldron(): void {
-        if (!this.picture || !this.picture._em) {
+        if (!this.picture || !this.picture._em || !this.picture._oi) {
             LoggerService.error(
                 "Picture has not been initialized yet or picture does not exists."
             );
@@ -51,18 +51,24 @@ class NoiseBuilder implements BuilderInterface {
             this.mutationChance,
             this.crossoverChance,
             this.nofMixes,
-            new DrawingService(),
+            new DrawingService(this.picture._oi),
             new SavingService()
         );
     }
 
-    setChances(crossoverChance: number, mutationChance: number) {
-        this.crossoverChance = crossoverChance;
-        this.mutationChance = mutationChance;
+    setChances(crossoverChance: number | null, mutationChance: number | null): void {
+        if (crossoverChance !== null) {
+            this.crossoverChance = crossoverChance;
+        }
+        if (mutationChance !== null) {
+            this.mutationChance = mutationChance;
+        }
     }
 
-    setNumberOfMixes(numberOfMixes: number): void {
-        this.nofMixes = numberOfMixes;
+    setNumberOfMixes(numberOfMixes: number | null): void {
+        if (numberOfMixes) {
+            this.nofMixes = numberOfMixes;
+        }
     }
 
     setPopulationConfig(populationConfig: PopulationType): void {
@@ -133,8 +139,9 @@ class NoiseBuilder implements BuilderInterface {
         this.cauldron.startMixing();
     }
 
-    createPicture(imageUrl: string, useRawImage: boolean = false): void {
+    async createPicture(imageUrl: string, useRawImage: boolean = false): Promise<void> {
         this.picture = new Picture(imageUrl, useRawImage);
+        await this.picture.waitForInit();
     }
 
     setOutputImageConfig(outputImageConfig: OutputImageConfigType): void {

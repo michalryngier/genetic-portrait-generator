@@ -3,6 +3,8 @@ import AgentInterface from "../../entities/genetics/interfaces/AgentInterface";
 import OutputImageConfigType from "../../entities/graphics/types/OutputImageConfigType";
 
 interface DrawingServiceInterface {
+    originalImage: JimpImageInterface;
+
     draw(
         agents: Array<AgentInterface>,
         image: JimpImageInterface,

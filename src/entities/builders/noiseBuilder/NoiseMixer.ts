@@ -23,6 +23,7 @@ class NoiseMixer implements MixerInterface {
             agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
             agents = this.sortAgents(agents);
             agents = this.normalizeAgents(agents);
+
             this.crossover(agents, crosser, crossOverChance);
             this.mutation(agents, mutator, mutationChance);
 
@@ -56,9 +57,9 @@ class NoiseMixer implements MixerInterface {
             usedIndexes.push(agent2Index);
 
             if (agent1 && agent2) {
-                if (crossOverChance > MathHelper.rand(1)) {
-                    [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
-                }
+                [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
+                agents[agent1Index].geneticRepresentation = agent1.geneticRepresentation;
+                agents[agent2Index].geneticRepresentation = agent2.geneticRepresentation;
             }
         }
     }

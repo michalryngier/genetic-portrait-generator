@@ -1,0 +1,1 @@
+{"version":3,"file":"AgentInterface.d.ts","sourceRoot":"","sources":["../../../../src/entities/genetics/interfaces/AgentInterface.ts"],"names":[],"mappings":"AAAA,OAAO,oBAAoB,MAAM,gDAAgD,CAAC;AAElF,UAAU,cAAc;IACpB,WAAW,EAAE,oBAAoB,CAAC;IAClC,YAAY,EAAE,MAAM,CAAC;IACrB,qBAAqB,EAAE,MAAM,CAAC;IAE9B,qBAAqB,IAAI,oBAAoB,CAAC;CACjD;AAED,eAAe,cAAc,CAAC"}

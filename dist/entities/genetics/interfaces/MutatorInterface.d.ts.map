@@ -1,0 +1,1 @@
+{"version":3,"file":"MutatorInterface.d.ts","sourceRoot":"","sources":["../../../../src/entities/genetics/interfaces/MutatorInterface.ts"],"names":[],"mappings":"AAAA,OAAO,cAAc,MAAM,kBAAkB,CAAC;AAE9C,UAAU,gBAAgB;IACtB,MAAM,CAAC,KAAK,EAAE,cAAc,EAAE,MAAM,EAAE,MAAM,GAAG,cAAc,CAAC;CACjE;AAED,eAAe,gBAAgB,CAAC"}
