@@ -88,7 +88,7 @@ class BezierCurve implements BezierCurveInterface {
         const mt: number = 1 - t;
         let p: Array<PointInterface> = points;
 
-        // linear?
+        // linear curve
         if (order === 1) {
             return new Point(
                 mt * p[0].x + t * p[1].x,
@@ -96,7 +96,7 @@ class BezierCurve implements BezierCurveInterface {
             );
         }
 
-        // quadratic/cubic curve?
+        // quadratic or cubic curve
         if (order >= 2 && order < 4) {
             let mt2: number = mt * mt,
                 t2: number = t * t,
@@ -123,7 +123,7 @@ class BezierCurve implements BezierCurveInterface {
             );
         }
 
-        // higher order curves: use de Casteljau's computation
+        // Higher order curves - use de Casteljau's computation.
         const dCpts: Array<PointInterface> = points.map(p => new Point(p.x, p.y));
         while (dCpts.length > 1) {
             for (let i = 0; i < dCpts.length - 1; i++) {
