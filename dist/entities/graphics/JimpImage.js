@@ -86,7 +86,7 @@ class JimpImage {
         if (color === null) {
             getColor = true;
         }
-        let step = 1 / bezierCurve.bezierPoints;
+        let step = 1 / bezierCurve.divider;
         for (let t = 0; t < 1; t += step) {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {

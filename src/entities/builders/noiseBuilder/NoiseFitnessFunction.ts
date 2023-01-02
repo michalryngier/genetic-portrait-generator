@@ -8,7 +8,7 @@ class NoiseFitnessFunction extends FitnessFunction {
     evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): number {
         const agentBezier = agent.getUpdatedBezierCurve();
         let sumOfCoverage = 0,
-            points = agentBezier.bezierPoints,
+            points = agentBezier.divider,
             step = 1 / points;
 
         for (let t = 0; t <= 1; t += step) {

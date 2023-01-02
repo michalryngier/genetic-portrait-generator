@@ -14,7 +14,7 @@ class NoisePopulator implements PopulatorInterface {
                     populationConfig.maxPoint,
                     MathHelper.randInt(populationConfig.nofPointsMax, populationConfig.nofPointsMin),
                     MathHelper.randInt(populationConfig.thicknessMax, populationConfig.thicknessMin),
-                    populationConfig.bezierPoints,
+                    populationConfig.divider,
                 )
             );
         }

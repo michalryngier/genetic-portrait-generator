@@ -5,9 +5,9 @@ declare class BezierCurve implements BezierCurveInterface {
     end: PointInterface;
     points: Array<PointInterface>;
     thickness: number;
-    bezierPoints: number;
-    constructor(start?: PointInterface, end?: PointInterface, points?: Array<PointInterface>, thickness?: number, bezierPoints?: number);
-    static getRandomCurve(maxPoint: PointInterface, nofPoints?: number, thickness?: number, bezierPoints?: number): BezierCurveInterface;
+    divider: number;
+    constructor(start?: PointInterface, end?: PointInterface, points?: Array<PointInterface>, thickness?: number, divider?: number);
+    static getRandomCurve(maxPoint: PointInterface, nofPoints?: number, thickness?: number, divider?: number): BezierCurveInterface;
     getPoint(t: number): PointInterface;
     setProperties(start: PointInterface, end: PointInterface, points: Array<PointInterface>, thickness?: number | null | undefined): void;
     interpolate(t: number, points: Array<PointInterface>): PointInterface;

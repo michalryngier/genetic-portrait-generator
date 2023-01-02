@@ -11,27 +11,27 @@ class BezierCurve implements BezierCurveInterface {
     public end: PointInterface = new Point(0, 0);
     public points: Array<PointInterface> = [];
     public thickness: number = 1;
-    public bezierPoints: number = 100;
+    public divider: number = 100;
 
     constructor(
         start: PointInterface = {x: 0, y: 0},
         end: PointInterface = {x: 0, y: 0},
         points: Array<PointInterface> = [],
         thickness: number = 1,
-        bezierPoints: number = 100
+        divider: number = 100
     ) {
         this.start = start;
         this.end = end;
         this.points = points;
         this.thickness = thickness;
-        this.bezierPoints = bezierPoints;
+        this.divider = divider;
     }
 
     static getRandomCurve(
         maxPoint: PointInterface,
         nofPoints: number = 1,
         thickness: number = 1,
-        bezierPoints: number = 100
+        divider: number = 100
     ): BezierCurveInterface {
         let start = new Point(
                 MathHelper.rand(maxPoint.x),
@@ -46,7 +46,7 @@ class BezierCurve implements BezierCurveInterface {
             );
         }
 
-        return new BezierCurve(start, end, points, thickness, bezierPoints);
+        return new BezierCurve(start, end, points, thickness, divider);
     }
 
     getPoint(t: number): PointInterface {
@@ -124,7 +124,7 @@ class BezierCurve implements BezierCurveInterface {
         }
 
         // higher order curves: use de Casteljau's computation
-        const dCpts: Array<PointInterface> = _.cloneDeep(points);
+        const dCpts: Array<PointInterface> = points.map(p => new Point(p.x, p.y));
         while (dCpts.length > 1) {
             for (let i = 0; i < dCpts.length - 1; i++) {
                 dCpts[i] = new Point(

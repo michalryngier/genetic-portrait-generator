@@ -9,24 +9,24 @@ const MathHelper_1 = __importDefault(require("../../helpers/MathHelper"));
 const StringHelper_1 = __importDefault(require("../../helpers/StringHelper"));
 const ConfigurationProvider_1 = __importDefault(require("../../providers/ConfigurationProvider"));
 class BezierCurve {
-    constructor(start = { x: 0, y: 0 }, end = { x: 0, y: 0 }, points = [], thickness = 1, bezierPoints = 100) {
+    constructor(start = { x: 0, y: 0 }, end = { x: 0, y: 0 }, points = [], thickness = 1, divider = 100) {
         this.start = new Point_1.default(0, 0);
         this.end = new Point_1.default(0, 0);
         this.points = [];
         this.thickness = 1;
-        this.bezierPoints = 100;
+        this.divider = 100;
         this.start = start;
         this.end = end;
         this.points = points;
         this.thickness = thickness;
-        this.bezierPoints = bezierPoints;
+        this.divider = divider;
     }
-    static getRandomCurve(maxPoint, nofPoints = 1, thickness = 1, bezierPoints = 100) {
+    static getRandomCurve(maxPoint, nofPoints = 1, thickness = 1, divider = 100) {
         let start = new Point_1.default(MathHelper_1.default.rand(maxPoint.x), MathHelper_1.default.rand(maxPoint.y)), end = new Point_1.default(MathHelper_1.default.rand(maxPoint.x), MathHelper_1.default.rand(maxPoint.y)), points = [];
         for (let i = 0; i < nofPoints; i++) {
             points.push(new Point_1.default(MathHelper_1.default.rand(maxPoint.x), MathHelper_1.default.rand(maxPoint.y)));
         }
-        return new BezierCurve(start, end, points, thickness, bezierPoints);
+        return new BezierCurve(start, end, points, thickness, divider);
     }
     getPoint(t) {
         let points = [];
@@ -72,7 +72,7 @@ class BezierCurve {
             }
             return new Point_1.default(a * p[0].x + b * p[1].x + c * p[2].x + d * p[3].x, a * p[0].y + b * p[1].y + c * p[2].y + d * p[3].y);
         }
-        const dCpts = lodash_1.default.cloneDeep(points);
+        const dCpts = points.map(p => new Point_1.default(p.x, p.y));
         while (dCpts.length > 1) {
             for (let i = 0; i < dCpts.length - 1; i++) {
                 dCpts[i] = new Point_1.default(dCpts[i].x + (dCpts[i + 1].x - dCpts[i].x) * t, dCpts[i].y + (dCpts[i + 1].y - dCpts[i].y) * t);

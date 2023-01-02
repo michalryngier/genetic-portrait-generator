@@ -5,7 +5,7 @@ interface BezierCurveInterface {
     end: PointInterface;
     points: Array<PointInterface>;
     thickness: number;
-    bezierPoints: number;
+    divider: number;
 
     getPoint(t: number): PointInterface;
 

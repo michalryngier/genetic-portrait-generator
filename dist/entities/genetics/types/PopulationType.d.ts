@@ -5,7 +5,7 @@ type PopulationType = {
     nofPointsMin: number;
     thicknessMax: number;
     thicknessMin: number;
-    bezierPoints: number;
+    divider: number;
     size: number;
 };
 export default PopulationType;

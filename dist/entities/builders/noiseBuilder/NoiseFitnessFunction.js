@@ -8,7 +8,7 @@ const ColorHelper_1 = __importDefault(require("../../../helpers/ColorHelper"));
 class NoiseFitnessFunction extends FitnessFunction_1.default {
     evaluate(agent, referenceImage) {
         const agentBezier = agent.getUpdatedBezierCurve();
-        let sumOfCoverage = 0, points = agentBezier.bezierPoints, step = 1 / points;
+        let sumOfCoverage = 0, points = agentBezier.divider, step = 1 / points;
         for (let t = 0; t <= 1; t += step) {
             let point = agentBezier.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {

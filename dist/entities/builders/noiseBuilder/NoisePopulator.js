@@ -10,7 +10,7 @@ class NoisePopulator {
     createPopulation(populationConfig) {
         let curves = [];
         for (let i = 0; i < populationConfig.size; i++) {
-            curves.push(BezierCurve_1.default.getRandomCurve(populationConfig.maxPoint, MathHelper_1.default.randInt(populationConfig.nofPointsMax, populationConfig.nofPointsMin), MathHelper_1.default.randInt(populationConfig.thicknessMax, populationConfig.thicknessMin), populationConfig.bezierPoints));
+            curves.push(BezierCurve_1.default.getRandomCurve(populationConfig.maxPoint, MathHelper_1.default.randInt(populationConfig.nofPointsMax, populationConfig.nofPointsMin), MathHelper_1.default.randInt(populationConfig.thicknessMax, populationConfig.thicknessMin), populationConfig.divider));
         }
         return this.createAgentsFromCurves(curves);
     }
