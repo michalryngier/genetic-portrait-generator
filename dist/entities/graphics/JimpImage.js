@@ -25,7 +25,7 @@ class JimpImage {
                 sum += this.getColorOnPosition(new Point_1.default(xx, yy));
             }
         }
-        return parseInt((sum / iterations).toString());
+        return sum / iterations;
     }
     getPointsWithThreshold(point, threshold) {
         return {
@@ -91,7 +91,7 @@ class JimpImage {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
-                    const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
+                    const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
                     this.drawPoint(new Point_1.default(point.x * scale, point.y * scale), originalColor, bezierCurve.thickness, lerpColor);
                 }
                 else if (color !== null) {
@@ -122,8 +122,9 @@ class JimpImage {
         }
         return base64;
     }
-    static createFromMatrix(edgeMatrix, scale = 1) {
-        return new JimpImage(new jimp_1.default(edgeMatrix.width * scale, edgeMatrix.height * scale, ColorHelper_1.default.black, (err, image) => image), scale);
+    static createFromMatrix(edgeMatrix, config) {
+        const color = config.bgColor ? ColorHelper_1.default.getColorFromHex(config.bgColor) : ColorHelper_1.default.black;
+        return new JimpImage(new jimp_1.default(edgeMatrix.width * config.scale, edgeMatrix.height * config.scale, color, (err, image) => image), config.scale);
     }
     static createFromParams(width, height, scale = 1) {
         return new JimpImage(new jimp_1.default(width * scale, height * scale, ColorHelper_1.default.transparent, (err, image) => image), scale);

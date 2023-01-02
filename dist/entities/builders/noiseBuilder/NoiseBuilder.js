@@ -120,12 +120,15 @@ class NoiseBuilder {
         this.outputImageConfig = outputImageConfig;
     }
     createOutputImage() {
-        var _a, _b;
         if (!this.picture || !this.picture._em) {
             LoggerService_1.default.error("Picture has not been initialized yet or picture does not exists.");
             return;
         }
-        this.outputImage = JimpImage_1.default.createFromMatrix(this.picture._em, (_b = (_a = this.outputImageConfig) === null || _a === void 0 ? void 0 : _a.scale) !== null && _b !== void 0 ? _b : 1);
+        if (!this.outputImageConfig) {
+            LoggerService_1.default.error("There is no config for output image provided.");
+            return;
+        }
+        this.outputImage = JimpImage_1.default.createFromMatrix(this.picture._em, this.outputImageConfig);
     }
     setOutputImage(outputImage) {
         this.outputImage = outputImage;

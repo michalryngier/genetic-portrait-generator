@@ -17,13 +17,15 @@ class DrawingService implements DrawingServiceInterface {
         config: OutputImageConfigType
     ): void {
         agents.forEach((agent: AgentInterface) => {
-            image.drawBezier(
-                agent.getUpdatedBezierCurve(),
-                this.originalImage,
-                config.scale,
-                this.getColor(config?.color ?? null),
-                config?.lerpColor ?? false,
-            );
+            if (agent.fitnessScore > 0) {
+                image.drawBezier(
+                    agent.getUpdatedBezierCurve(),
+                    this.originalImage,
+                    config.scale,
+                    this.getColor(config?.color ?? null),
+                    config?.lerpColor ?? false,
+                );
+            }
         });
     }
 

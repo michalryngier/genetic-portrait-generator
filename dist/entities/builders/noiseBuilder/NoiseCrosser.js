@@ -8,8 +8,9 @@ const ConfigurationProvider_1 = __importDefault(require("../../../providers/Conf
 const MathHelper_1 = __importDefault(require("../../../helpers/MathHelper"));
 class NoiseCrosser {
     crossover(agent1, agent2, crossOverChance) {
-        if (crossOverChance * agent1.fitnessScore < MathHelper_1.default.rand(1) ||
-            crossOverChance * agent2.fitnessScore < MathHelper_1.default.rand(1)) {
+        const rand = MathHelper_1.default.rand(1);
+        if (crossOverChance * agent1.fitnessScore < rand ||
+            crossOverChance * agent2.fitnessScore < rand) {
             return [agent1, agent2];
         }
         let gr1 = 'ABCDEFGHIJ';

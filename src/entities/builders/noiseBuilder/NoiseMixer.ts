@@ -29,6 +29,7 @@ class NoiseMixer implements MixerInterface {
 
             LoggerService.loading((((i + 1) / nofMixes) * 100).toString());
         }
+        agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
     }
 
     private sortAgents(agents: Array<AgentInterface>): Array<AgentInterface> {

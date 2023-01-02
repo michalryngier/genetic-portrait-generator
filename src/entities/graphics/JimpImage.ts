@@ -7,6 +7,7 @@ import ThreshholdInterface from "./interfaces/ThreshholdInterface";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 import JimpImageInterface from "./interfaces/JimpImageInterface";
 import Point from "./Point";
+import OutputImageConfigType from "./types/OutputImageConfigType";
 
 class JimpImage implements JimpImageInterface {
     private jimpImage: Jimp;
@@ -42,7 +43,7 @@ class JimpImage implements JimpImageInterface {
             }
         }
 
-        return parseInt((sum / iterations).toString());
+        return sum / iterations;
     }
 
     private getPointsWithThreshold(
@@ -145,7 +146,7 @@ class JimpImage implements JimpImageInterface {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
-                    const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
+                    const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
                     this.drawPoint(
                         new Point(point.x * scale, point.y * scale),
                         originalColor,
@@ -197,16 +198,18 @@ class JimpImage implements JimpImageInterface {
 
     static createFromMatrix(
         edgeMatrix: JimpImageInterface,
-        scale: number = 1
+        config: OutputImageConfigType
     ): JimpImageInterface {
+        const color = config.bgColor ? ColorHelper.getColorFromHex(config.bgColor) : ColorHelper.black;
+
         return new JimpImage(
             new Jimp(
-                edgeMatrix.width * scale,
-                edgeMatrix.height * scale,
-                ColorHelper.black,
+                edgeMatrix.width * config.scale,
+                edgeMatrix.height * config.scale,
+                color,
                 (err: Error, image: Jimp) => image
             ),
-            scale
+            config.scale
         );
     }
 

@@ -1,12 +1,12 @@
-import NoiseCauldron from "../noiseBuilder/NoiseCauldron";
 import PopulationType from "../../genetics/types/PopulationType";
 import PictureInterface from "../../graphics/interfaces/PictureInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
+import { CauldronInterface } from "../../genetics";
 interface BuilderInterface {
     picture: PictureInterface | undefined;
     outputImage: JimpImageInterface | undefined;
-    cauldron: NoiseCauldron | undefined;
+    cauldron: CauldronInterface | undefined;
     populationConfig: PopulationType | undefined;
     outputImageConfig: OutputImageConfigType | undefined;
     mutationChance: number;

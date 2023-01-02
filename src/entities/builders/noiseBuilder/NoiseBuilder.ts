@@ -155,10 +155,16 @@ class NoiseBuilder implements BuilderInterface {
             );
             return;
         }
+        if (!this.outputImageConfig) {
+            LoggerService.error(
+                "There is no config for output image provided."
+            );
+            return;
+        }
 
         this.outputImage = JimpImage.createFromMatrix(
             this.picture._em,
-            this.outputImageConfig?.scale ?? 1
+            this.outputImageConfig
         );
     }
 

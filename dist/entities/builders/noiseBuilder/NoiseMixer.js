@@ -16,6 +16,7 @@ class NoiseMixer {
             this.mutation(agents, mutator, mutationChance);
             LoggerService_1.default.loading((((i + 1) / nofMixes) * 100).toString());
         }
+        agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
     }
     sortAgents(agents) {
         return agents.sort((a, b) => b.fitnessScore - a.fitnessScore);
