@@ -12,7 +12,7 @@ class DrawingService {
         agents.forEach((agent) => {
             var _a, _b;
             if (agent.fitnessScore > 0) {
-                image.drawBezier(agent.getUpdatedBezierCurve(), this.originalImage, config.scale, this.getColor((_a = config === null || config === void 0 ? void 0 : config.color) !== null && _a !== void 0 ? _a : null), (_b = config === null || config === void 0 ? void 0 : config.lerpColor) !== null && _b !== void 0 ? _b : false);
+                image.drawBezier(agent.getUpdatedBezierCurve(), this.originalImage, this.getColor((_a = config === null || config === void 0 ? void 0 : config.color) !== null && _a !== void 0 ? _a : null), (_b = config === null || config === void 0 ? void 0 : config.lerpColor) !== null && _b !== void 0 ? _b : false);
             }
         });
     }

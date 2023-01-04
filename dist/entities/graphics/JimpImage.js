@@ -81,7 +81,7 @@ class JimpImage {
             this.image.setPixelColor(color, point.x, point.y);
         }
     }
-    drawBezier(bezierCurve, originalImage, scale = 1, color = null, lerpColor = false) {
+    drawBezier(bezierCurve, originalImage, color = null, lerpColor = false) {
         let getColor = false;
         if (color === null) {
             getColor = true;
@@ -92,10 +92,10 @@ class JimpImage {
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
                     const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
-                    this.drawPoint(new Point_1.default(point.x * scale, point.y * scale), originalColor, bezierCurve.thickness, lerpColor);
+                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), originalColor, bezierCurve.thickness, lerpColor);
                 }
                 else if (color !== null) {
-                    this.drawPoint(new Point_1.default(point.x * scale, point.y * scale), color, bezierCurve.thickness, lerpColor);
+                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), color, bezierCurve.thickness, lerpColor);
                 }
             }
         }

@@ -4,7 +4,7 @@ import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 import JimpImageInterface from "./interfaces/JimpImageInterface";
 import OutputImageConfigType from "./types/OutputImageConfigType";
 declare class JimpImage implements JimpImageInterface {
-    private jimpImage;
+    readonly jimpImage: Jimp;
     width: number;
     height: number;
     scale: number;
@@ -17,7 +17,7 @@ declare class JimpImage implements JimpImageInterface {
     flattenImage(precision?: number): void;
     fillColor(color: number): void;
     drawPoint(point: PointInterface, color: number, thickness?: number, lerpColor?: boolean): void;
-    drawBezier(bezierCurve: BezierCurveInterface, originalImage: JimpImageInterface, scale?: number, color?: number | null, lerpColor?: boolean): void;
+    drawBezier(bezierCurve: BezierCurveInterface, originalImage: JimpImageInterface, color?: number | null, lerpColor?: boolean): void;
     writeImage(fileName?: string): Jimp | Error;
     toBase64(): string | Error;
     static createFromMatrix(edgeMatrix: JimpImageInterface, config: OutputImageConfigType): JimpImageInterface;

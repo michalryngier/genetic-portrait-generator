@@ -1,8 +1,8 @@
-interface ThreshholdInterface {
+interface ThresholdInterface {
     xMin: number;
     xMax: number;
     yMin: number;
     yMax: number;
 }
 
-export default ThreshholdInterface;
+export default ThresholdInterface;

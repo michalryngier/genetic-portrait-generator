@@ -3,6 +3,7 @@ import PointInterface from "./PointInterface";
 import BezierCurveInterface from "./BezierCurveInterface";
 
 interface JimpImageInterface {
+    readonly jimpImage: Jimp
     width: number;
     height: number;
     scale: number;
@@ -18,9 +19,8 @@ interface JimpImageInterface {
     drawBezier(
         bezierCurve: BezierCurveInterface,
         originalImage: JimpImageInterface,
-        scale: number,
         color: number | null,
-        lerpColor: boolean,
+        lerpColor: boolean
     ): void;
 }
 

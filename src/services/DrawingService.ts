@@ -21,7 +21,6 @@ class DrawingService implements DrawingServiceInterface {
                 image.drawBezier(
                     agent.getUpdatedBezierCurve(),
                     this.originalImage,
-                    config.scale,
                     this.getColor(config?.color ?? null),
                     config?.lerpColor ?? false,
                 );

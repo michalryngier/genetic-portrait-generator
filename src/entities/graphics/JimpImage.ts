@@ -3,14 +3,14 @@ import MathHelper from "../../helpers/MathHelper";
 import ColorHelper from "../../helpers/ColorHelper";
 import JimpCallbackInterface from "./interfaces/JimpCallbackInterface";
 import PointInterface from "./interfaces/PointInterface";
-import ThreshholdInterface from "./interfaces/ThreshholdInterface";
+import ThresholdInterface from "./interfaces/ThresholdInterface";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 import JimpImageInterface from "./interfaces/JimpImageInterface";
 import Point from "./Point";
 import OutputImageConfigType from "./types/OutputImageConfigType";
 
 class JimpImage implements JimpImageInterface {
-    private jimpImage: Jimp;
+    public readonly jimpImage: Jimp;
     public width: number;
     public height: number;
     public scale: number;
@@ -49,7 +49,7 @@ class JimpImage implements JimpImageInterface {
     private getPointsWithThreshold(
         point: Point,
         threshold: number
-    ): ThreshholdInterface {
+    ): ThresholdInterface {
         return {
             xMin: Math.round(MathHelper.clamp(point.x - threshold, this.width)),
             yMin: Math.round(MathHelper.clamp(point.y - threshold, this.height)),
@@ -79,7 +79,7 @@ class JimpImage implements JimpImageInterface {
         );
     }
 
-    flattenImage(precision = 1) {
+    private flattenImage(precision = 1) {
         let whiteVal = MathHelper.clamp(precision, 1) * ColorHelper.white;
 
         this.scan((x, y) => {
@@ -94,7 +94,7 @@ class JimpImage implements JimpImageInterface {
         });
     }
 
-    fillColor(color: number) {
+    private fillColor(color: number) {
         this.scan((x, y) => {
             this.drawPoint({x, y}, color);
         });
@@ -133,7 +133,6 @@ class JimpImage implements JimpImageInterface {
     drawBezier(
         bezierCurve: BezierCurveInterface,
         originalImage: JimpImageInterface,
-        scale = 1,
         color: number | null = null,
         lerpColor = false,
     ): void {
@@ -148,14 +147,14 @@ class JimpImage implements JimpImageInterface {
                 if (getColor) {
                     const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
                     this.drawPoint(
-                        new Point(point.x * scale, point.y * scale),
+                        new Point(point.x * this.scale, point.y * this.scale),
                         originalColor,
                         bezierCurve.thickness,
                         lerpColor
                     );
                 } else if (color !== null) {
                     this.drawPoint(
-                        new Point(point.x * scale, point.y * scale),
+                        new Point(point.x * this.scale, point.y * this.scale),
                         color,
                         bezierCurve.thickness,
                         lerpColor
@@ -216,13 +215,14 @@ class JimpImage implements JimpImageInterface {
     static createFromParams(
         width: number,
         height: number,
-        scale: number = 1
+        scale: number = 1,
+        color: number | null
     ): JimpImageInterface {
         return new JimpImage(
             new Jimp(
                 width * scale,
                 height * scale,
-                ColorHelper.transparent,
+                color ?? ColorHelper.transparent,
                 (err: Error, image: Jimp) => image
             ),
             scale
