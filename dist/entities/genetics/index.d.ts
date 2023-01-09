@@ -10,6 +10,6 @@ import MixerInterface from "./interfaces/MixerInterface";
 import MutatorInterface from "./interfaces/MutatorInterface";
 import PopulatorInterface from "./interfaces/PopulatorInterface";
 import EvaluatorFunctionType from "./types/EvaluatorFunctionType";
-import PopulationType from "./types/PopulationType";
-export { AgentInterface, CauldronInterface, CrosserInterface, EvaluatorInterface, FitnessFunctionInterface, MixerInterface, MutatorInterface, PopulatorInterface, EvaluatorFunctionType, PopulationType, Agent, Cauldron, FitnessFunction };
+import PopulationConfigType from "./types/PopulationConfigType";
+export { AgentInterface, CauldronInterface, CrosserInterface, EvaluatorInterface, FitnessFunctionInterface, MixerInterface, MutatorInterface, PopulatorInterface, EvaluatorFunctionType, PopulationConfigType, Agent, Cauldron, FitnessFunction };
 //# sourceMappingURL=index.d.ts.map

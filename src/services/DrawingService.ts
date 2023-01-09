@@ -28,7 +28,7 @@ class DrawingService implements DrawingServiceInterface {
         });
     }
 
-    private getColor(color: string | null) {
+    private getColor(color: string | null) : number | null {
         if (color) {
             return ColorHelper.getColorFromHex(color);
         }

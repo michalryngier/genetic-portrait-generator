@@ -14,7 +14,7 @@ class FitnessFunction implements FitnessFunctionInterface {
         this.decorator = decorator;
     }
 
-    _evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): number {
+    applyDecorator(agent: AgentInterface, referenceImage: JimpImageInterface): number {
         if (this.decorator) {
             return this.decorator.evaluate(agent, referenceImage);
         }
@@ -23,8 +23,12 @@ class FitnessFunction implements FitnessFunctionInterface {
     }
 
     evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): number {
-        return 0 * this.weight + this._evaluate(agent, referenceImage);
+        return this.performEvaluation(agent, referenceImage) * this.weight + this.applyDecorator(agent, referenceImage);
     }
+
+    protected performEvaluation(agent: AgentInterface, referenceImage: JimpImageInterface) : number {
+        return 0;
+    };
 }
 
 export default FitnessFunction;

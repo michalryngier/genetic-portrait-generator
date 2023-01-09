@@ -3,7 +3,7 @@ import MathHelper from "../../helpers/MathHelper";
 import ColorHelper from "../../helpers/ColorHelper";
 import JimpCallbackInterface from "./interfaces/JimpCallbackInterface";
 import PointInterface from "./interfaces/PointInterface";
-import ThresholdInterface from "./interfaces/ThresholdInterface";
+import ThresholdType from "./types/ThresholdType";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
 import JimpImageInterface from "./interfaces/JimpImageInterface";
 import Point from "./Point";
@@ -49,7 +49,7 @@ class JimpImage implements JimpImageInterface {
     private getPointsWithThreshold(
         point: Point,
         threshold: number
-    ): ThresholdInterface {
+    ): ThresholdType {
         return {
             xMin: Math.round(MathHelper.clamp(point.x - threshold, this.width)),
             yMin: Math.round(MathHelper.clamp(point.y - threshold, this.height)),

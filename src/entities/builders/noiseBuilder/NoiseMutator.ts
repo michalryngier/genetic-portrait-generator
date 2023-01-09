@@ -4,14 +4,14 @@ import MathHelper from "../../../helpers/MathHelper";
 import ConfigurationProvider from "../../../providers/ConfigurationProvider";
 
 class NoiseMutator implements MutatorInterface {
-    mutate(agent: AgentInterface, chance: number): AgentInterface {
+    mutate(agent: AgentInterface, mutationChance: number): AgentInterface {
         let gr = agent.geneticRepresentation.split("");
         gr = gr.map((bit, index) => {
             let factor;
             if (agent.fitnessScore === 0) {
-                factor = chance;
+                factor = mutationChance;
             } else {
-                factor = agent.fitnessScore * chance
+                factor = agent.fitnessScore * mutationChance
             }
 
             let rn = MathHelper.rand(1);

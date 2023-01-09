@@ -8,12 +8,12 @@ class NoiseCrosser implements CrosserInterface {
     crossover(
         agent1: AgentInterface,
         agent2: AgentInterface,
-        crossOverChance: number
+        crossoverChance: number
     ): [AgentInterface, AgentInterface] {
         const rand = MathHelper.rand(1);
         if (
-            crossOverChance * agent1.fitnessScore < rand ||
-            crossOverChance * agent2.fitnessScore < rand
+            crossoverChance * agent1.fitnessScore < rand ||
+            crossoverChance * agent2.fitnessScore < rand
         ) {
             return [agent1, agent2];
         }

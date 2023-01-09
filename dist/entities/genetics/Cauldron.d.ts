@@ -4,7 +4,7 @@ import CrosserInterface from "./interfaces/CrosserInterface";
 import MutatorInterface from "./interfaces/MutatorInterface";
 import CauldronInterface from "./interfaces/CauldronInterface";
 import EvaluatorInterface from "./interfaces/EvaluatorInterface";
-import PopulationType from "./types/PopulationType";
+import PopulationConfigType from "./types/PopulationConfigType";
 import JimpImageInterface from "../graphics/interfaces/JimpImageInterface";
 import PopulatorInterface from "./interfaces/PopulatorInterface";
 import SavingServiceInterface from "../../services/interfaces/SavingServiceInterface";
@@ -12,7 +12,7 @@ import DrawingServiceInterface from "../../services/interfaces/DrawingServiceInt
 import SavableInterface from "../../services/interfaces/SavableInterface";
 import OutputImageConfigType from "../graphics/types/OutputImageConfigType";
 declare class Cauldron implements CauldronInterface, SavableInterface {
-    populationConfig: PopulationType | undefined;
+    populationConfig: PopulationConfigType | undefined;
     populator: PopulatorInterface | undefined;
     referenceImage: JimpImageInterface | undefined;
     mixer: MixerInterface | undefined;
@@ -25,7 +25,7 @@ declare class Cauldron implements CauldronInterface, SavableInterface {
     drawingService: DrawingServiceInterface | undefined;
     savingService: SavingServiceInterface | undefined;
     agents: Array<AgentInterface>;
-    constructor(populationConfig: PopulationType, populator: PopulatorInterface, referenceImage: JimpImageInterface, mixer: MixerInterface, evaluator: EvaluatorInterface, mutator: MutatorInterface, crosser: CrosserInterface, mutationChance: number, crossoverChance: number, nofMixes: number, drawingService: DrawingServiceInterface, savingService: SavingServiceInterface);
+    constructor(populationConfig: PopulationConfigType, populator: PopulatorInterface, referenceImage: JimpImageInterface, mixer: MixerInterface, evaluator: EvaluatorInterface, mutator: MutatorInterface, crosser: CrosserInterface, mutationChance: number, crossoverChance: number, nofMixes: number, drawingService: DrawingServiceInterface, savingService: SavingServiceInterface);
     draw(outputImage: JimpImageInterface, outputImageConfig: OutputImageConfigType): void;
     loadProgress(): void;
     saveProgress(): void;

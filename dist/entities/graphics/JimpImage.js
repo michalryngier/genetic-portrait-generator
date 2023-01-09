@@ -126,8 +126,8 @@ class JimpImage {
         const color = config.bgColor ? ColorHelper_1.default.getColorFromHex(config.bgColor) : ColorHelper_1.default.black;
         return new JimpImage(new jimp_1.default(edgeMatrix.width * config.scale, edgeMatrix.height * config.scale, color, (err, image) => image), config.scale);
     }
-    static createFromParams(width, height, scale = 1) {
-        return new JimpImage(new jimp_1.default(width * scale, height * scale, ColorHelper_1.default.transparent, (err, image) => image), scale);
+    static createFromParams(width, height, scale = 1, color) {
+        return new JimpImage(new jimp_1.default(width * scale, height * scale, color !== null && color !== void 0 ? color : ColorHelper_1.default.transparent, (err, image) => image), scale);
     }
 }
 exports.default = JimpImage;

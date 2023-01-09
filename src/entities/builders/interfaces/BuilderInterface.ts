@@ -1,4 +1,4 @@
-import PopulationType from "../../genetics/types/PopulationType";
+import PopulationConfigType from "../../genetics/types/PopulationConfigType";
 import PictureInterface from "../../graphics/interfaces/PictureInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
@@ -8,7 +8,7 @@ interface BuilderInterface {
     picture: PictureInterface | undefined;
     outputImage: JimpImageInterface | undefined;
     cauldron: CauldronInterface | undefined;
-    populationConfig: PopulationType | undefined;
+    populationConfig: PopulationConfigType | undefined;
     outputImageConfig: OutputImageConfigType | undefined;
 
     mutationChance: number;
@@ -29,7 +29,7 @@ interface BuilderInterface {
 
     createOutputImage(): void;
 
-    setPopulationConfig(populationConfig: PopulationType): void;
+    setPopulationConfig(populationConfig: PopulationConfigType): void;
 
     createCauldron(): void;
 

@@ -1,18 +1,18 @@
 import NoiseMixer from "./NoiseMixer";
-import Picture from "../../graphics/Picture";
 import NoiseMutator from "./NoiseMutator";
 import NoiseCrosser from "./NoiseCrosser";
 import NoiseCauldron from "./NoiseCauldron";
-import JimpImage from "../../graphics/JimpImage";
+import Picture from "../../graphics/Picture";
 import NoisePopulator from "./NoisePopulator";
 import NoiseEvaluator from "./NoiseEvaluator";
+import JimpImage from "../../graphics/JimpImage";
+import NoiseFitnessFunction from "./NoiseFitnessFunction";
 import SavingService from "../../../services/SavingService";
 import BuilderInterface from "../interfaces/BuilderInterface";
 import DrawingService from "../../../services/DrawingService";
-import NoiseFitnessFunction from "./NoiseFitnessFunction";
-import PopulationType from "../../genetics/types/PopulationType";
 import LoggerService from "../../../services/logger/LoggerService";
 import PictureInterface from "../../graphics/interfaces/PictureInterface";
+import PopulationConfigType from "../../genetics/types/PopulationConfigType";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import OutputImageConfigType from "../../graphics/types/OutputImageConfigType";
 
@@ -20,7 +20,7 @@ class NoiseBuilder implements BuilderInterface {
     picture: PictureInterface | undefined;
     outputImage: JimpImageInterface | undefined;
     cauldron: NoiseCauldron | undefined;
-    populationConfig: PopulationType | undefined;
+    populationConfig: PopulationConfigType | undefined;
     outputImageConfig: OutputImageConfigType | undefined;
 
     crossoverChance: number = 0.8;
@@ -71,7 +71,7 @@ class NoiseBuilder implements BuilderInterface {
         }
     }
 
-    setPopulationConfig(populationConfig: PopulationType): void {
+    setPopulationConfig(populationConfig: PopulationConfigType): void {
         this.populationConfig = populationConfig;
     }
 

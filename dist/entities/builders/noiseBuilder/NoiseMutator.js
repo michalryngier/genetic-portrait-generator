@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const MathHelper_1 = __importDefault(require("../../../helpers/MathHelper"));
 const ConfigurationProvider_1 = __importDefault(require("../../../providers/ConfigurationProvider"));
 class NoiseMutator {
-    mutate(agent, chance) {
+    mutate(agent, mutationChance) {
         let gr = agent.geneticRepresentation.split("");
         gr = gr.map((bit, index) => {
             let factor;
             if (agent.fitnessScore === 0) {
-                factor = chance;
+                factor = mutationChance;
             }
             else {
-                factor = agent.fitnessScore * chance;
+                factor = agent.fitnessScore * mutationChance;
             }
             let rn = MathHelper_1.default.rand(1);
             let doMutation = factor >= rn;

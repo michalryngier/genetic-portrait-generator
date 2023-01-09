@@ -7,12 +7,12 @@ const LoggerService_1 = __importDefault(require("../../../services/logger/Logger
 const MathHelper_1 = __importDefault(require("../../../helpers/MathHelper"));
 const lodash_1 = __importDefault(require("lodash"));
 class NoiseMixer {
-    mix(agents, mutator, crosser, evaluator, referenceImage, mutationChance, crossOverChance, nofMixes) {
+    mix(agents, mutator, crosser, evaluator, referenceImage, mutationChance, crossoverChance, nofMixes) {
         for (let i = 0; i < nofMixes; i++) {
             agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
             agents = this.sortAgents(agents);
             agents = this.normalizeAgents(agents);
-            this.crossover(agents, crosser, crossOverChance);
+            this.crossover(agents, crosser, crossoverChance);
             this.mutation(agents, mutator, mutationChance);
             LoggerService_1.default.loading((((i + 1) / nofMixes) * 100).toString());
         }
@@ -28,7 +28,7 @@ class NoiseMixer {
         });
         return agents;
     }
-    crossover(agents, crosser, crossOverChance) {
+    crossover(agents, crosser, crossoverChance) {
         let agentsCopy = lodash_1.default.cloneDeep(agents);
         let usedIndexes = [];
         while (usedIndexes.length < agents.length) {
@@ -37,7 +37,7 @@ class NoiseMixer {
             let [agent2, agent2Index] = this.drawAgent(agentsCopy);
             usedIndexes.push(agent2Index);
             if (agent1 && agent2) {
-                [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
+                [agent1, agent2] = crosser.crossover(agent1, agent2, crossoverChance);
                 agents[agent1Index].geneticRepresentation = agent1.geneticRepresentation;
                 agents[agent2Index].geneticRepresentation = agent2.geneticRepresentation;
             }

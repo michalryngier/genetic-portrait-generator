@@ -3,7 +3,7 @@ import MixerInterface from "./MixerInterface";
 import MutatorInterface from "./MutatorInterface";
 import CrosserInterface from "./CrosserInterface";
 import EvaluatorInterface from "./EvaluatorInterface";
-import PopulationType from "../types/PopulationType";
+import PopulationConfigType from "../types/PopulationConfigType";
 import PopulatorInterface from "./PopulatorInterface";
 import JimpImageInterface from "../../graphics/interfaces/JimpImageInterface";
 import SavingServiceInterface from "../../../services/interfaces/SavingServiceInterface";
@@ -17,7 +17,7 @@ interface CauldronInterface {
     evaluator: EvaluatorInterface | undefined;
     mixer: MixerInterface | undefined;
     referenceImage: JimpImageInterface | undefined;
-    populationConfig: PopulationType | undefined;
+    populationConfig: PopulationConfigType | undefined;
     populator: PopulatorInterface | undefined;
     savingService: SavingServiceInterface | undefined;
     drawingService: DrawingServiceInterface | undefined;

@@ -24,7 +24,7 @@ class ColorHelper {
         return Jimp.rgbaToInt(rgba.r, rgba.g, rgba.b, alpha);
     }
 
-    public static getColorFromHex(hex: string) {
+    public static getColorFromHex(hex: string): number {
         hex = hex.replace(/#/gi, "");
         if (hex.length === 6) {
             hex += "ff";

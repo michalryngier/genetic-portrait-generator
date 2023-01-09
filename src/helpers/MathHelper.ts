@@ -15,21 +15,21 @@ class MathHelper {
     }
 
     public static randInt(max: number, min: number = 0) {
-        return parseInt(Math.floor(Math.random() * ((max + 1) - min) + min).toString());
+        return parseInt(this.rand(max, min).toString());
     }
 
     public static lerp(start: number, end: number, t: number): number {
         return start + (end - start) * this.clamp(t, 1);
     }
 
-    public static normalize(value: number, max: number, min: number) {
+    public static normalize(value: number, max: number, min: number): number {
         if (max === min) {
             return 1;
         }
         return Math.abs((value - min) / (max - min));
     }
 
-    public static decToBinary(dec: number, length: number) {
+    public static decToBinary(dec: number, length: number): string {
         let binary = dec.toString(2);
         if (binary.length < length) {
             let diff = length - binary.length,
@@ -43,7 +43,7 @@ class MathHelper {
         return binary;
     }
 
-    public static binaryToDec(binary: string) {
+    public static binaryToDec(binary: string): number {
         return parseInt(binary, 2);
     }
 }

@@ -4,7 +4,7 @@ import JimpCallbackInterface from "./interfaces/JimpCallbackInterface";
 import JimpImageInterface from "./interfaces/JimpImageInterface";
 import PictureInterface from "./interfaces/PictureInterface";
 import PointInterface from "./interfaces/PointInterface";
-import ThresholdInterface from "./interfaces/ThresholdInterface";
+import ThresholdType from "./types/ThresholdType";
 import JimpImage from "./JimpImage";
 import Picture from "./Picture";
 import Point from "./Point";
@@ -16,7 +16,7 @@ export {
     JimpImageInterface,
     PictureInterface,
     PointInterface,
-    ThresholdInterface,
+    ThresholdType,
     OutputImageConfigType,
     BezierCurve,
     JimpImage,

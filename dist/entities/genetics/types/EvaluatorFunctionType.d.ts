@@ -1,6 +1,6 @@
-import NoiseFitnessFunction from "../../builders/noiseBuilder/NoiseFitnessFunction";
+import { FitnessFunction } from "../index";
 type EvaluatorFunctionType = {
-    fn: typeof NoiseFitnessFunction;
+    fn: typeof FitnessFunction;
     weight: number;
 };
 export default EvaluatorFunctionType;

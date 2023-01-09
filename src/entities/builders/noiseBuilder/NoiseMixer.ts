@@ -16,7 +16,7 @@ class NoiseMixer implements MixerInterface {
         evaluator: EvaluatorInterface,
         referenceImage: JimpImageInterface,
         mutationChance: number,
-        crossOverChance: number,
+        crossoverChance: number,
         nofMixes: number
     ): void {
         for (let i = 0; i < nofMixes; i++) {
@@ -24,7 +24,7 @@ class NoiseMixer implements MixerInterface {
             agents = this.sortAgents(agents);
             agents = this.normalizeAgents(agents);
 
-            this.crossover(agents, crosser, crossOverChance);
+            this.crossover(agents, crosser, crossoverChance);
             this.mutation(agents, mutator, mutationChance);
 
             LoggerService.loading((((i + 1) / nofMixes) * 100).toString());
@@ -47,7 +47,7 @@ class NoiseMixer implements MixerInterface {
         return agents;
     }
 
-    private crossover(agents: Array<AgentInterface>, crosser: CrosserInterface, crossOverChance: number) {
+    private crossover(agents: Array<AgentInterface>, crosser: CrosserInterface, crossoverChance: number) {
         let agentsCopy: Array<AgentInterface> = _.cloneDeep<Array<AgentInterface>>(agents);
         let usedIndexes = [];
 
@@ -58,7 +58,7 @@ class NoiseMixer implements MixerInterface {
             usedIndexes.push(agent2Index);
 
             if (agent1 && agent2) {
-                [agent1, agent2] = crosser.crossover(agent1, agent2, crossOverChance);
+                [agent1, agent2] = crosser.crossover(agent1, agent2, crossoverChance);
                 agents[agent1Index].geneticRepresentation = agent1.geneticRepresentation;
                 agents[agent2Index].geneticRepresentation = agent2.geneticRepresentation;
             }

@@ -7,11 +7,11 @@ const NoiseBuilder_1 = __importDefault(require("./NoiseBuilder"));
 const NoiseAgent_1 = __importDefault(require("./NoiseAgent"));
 const NoiseCauldron_1 = __importDefault(require("./NoiseCauldron"));
 const NoiseCrosser_1 = __importDefault(require("./NoiseCrosser"));
-const NoiseEvaluator_1 = __importDefault(require("./NoiseEvaluator"));
 const NoiseFitnessFunction_1 = __importDefault(require("./NoiseFitnessFunction"));
 const NoiseMixer_1 = __importDefault(require("./NoiseMixer"));
 const NoiseMutator_1 = __importDefault(require("./NoiseMutator"));
 const NoisePopulator_1 = __importDefault(require("./NoisePopulator"));
+const NoiseEvaluator_1 = __importDefault(require("./NoiseEvaluator"));
 exports.default = {
     NoiseBuilder: NoiseBuilder_1.default,
     NoiseAgent: NoiseAgent_1.default,

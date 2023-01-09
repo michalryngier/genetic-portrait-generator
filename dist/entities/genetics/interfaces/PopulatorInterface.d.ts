@@ -1,7 +1,7 @@
 import AgentInterface from "./AgentInterface";
-import PopulationType from "../types/PopulationType";
+import PopulationConfigType from "../types/PopulationConfigType";
 interface PopulatorInterface {
-    createPopulation(populationConfig: PopulationType): Array<AgentInterface>;
+    createPopulation(populationConfig: PopulationConfigType): Array<AgentInterface>;
 }
 export default PopulatorInterface;
 //# sourceMappingURL=PopulatorInterface.d.ts.map

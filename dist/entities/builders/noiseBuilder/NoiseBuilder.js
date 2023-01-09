@@ -13,16 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const NoiseMixer_1 = __importDefault(require("./NoiseMixer"));
-const Picture_1 = __importDefault(require("../../graphics/Picture"));
 const NoiseMutator_1 = __importDefault(require("./NoiseMutator"));
 const NoiseCrosser_1 = __importDefault(require("./NoiseCrosser"));
 const NoiseCauldron_1 = __importDefault(require("./NoiseCauldron"));
-const JimpImage_1 = __importDefault(require("../../graphics/JimpImage"));
+const Picture_1 = __importDefault(require("../../graphics/Picture"));
 const NoisePopulator_1 = __importDefault(require("./NoisePopulator"));
 const NoiseEvaluator_1 = __importDefault(require("./NoiseEvaluator"));
+const JimpImage_1 = __importDefault(require("../../graphics/JimpImage"));
+const NoiseFitnessFunction_1 = __importDefault(require("./NoiseFitnessFunction"));
 const SavingService_1 = __importDefault(require("../../../services/SavingService"));
 const DrawingService_1 = __importDefault(require("../../../services/DrawingService"));
-const NoiseFitnessFunction_1 = __importDefault(require("./NoiseFitnessFunction"));
 const LoggerService_1 = __importDefault(require("../../../services/logger/LoggerService"));
 class NoiseBuilder {
     constructor() {

@@ -5,7 +5,7 @@ import ColorHelper from "../../../helpers/ColorHelper";
 import PointInterface from "../../graphics/interfaces/PointInterface";
 
 class NoiseFitnessFunction extends FitnessFunction {
-    evaluate(agent: AgentInterface, referenceImage: JimpImageInterface): number {
+    performEvaluation(agent: AgentInterface, referenceImage: JimpImageInterface): number {
         const agentBezier = agent.getUpdatedBezierCurve();
         let sumOfCoverage = 0,
             points = agentBezier.divider,
@@ -38,7 +38,7 @@ class NoiseFitnessFunction extends FitnessFunction {
             avg = 1 / sumOfCoverage;
         }
 
-        return avg * this.weight + this._evaluate(agent, referenceImage);
+        return avg;
     }
 }
 

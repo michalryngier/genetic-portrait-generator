@@ -10,7 +10,7 @@ import MixerInterface from "./interfaces/MixerInterface";
 import MutatorInterface from "./interfaces/MutatorInterface";
 import PopulatorInterface from "./interfaces/PopulatorInterface";
 import EvaluatorFunctionType from "./types/EvaluatorFunctionType";
-import PopulationType from "./types/PopulationType";
+import PopulationConfigType from "./types/PopulationConfigType";
 
 
 export {
@@ -23,7 +23,7 @@ export {
     MutatorInterface,
     PopulatorInterface,
     EvaluatorFunctionType,
-    PopulationType,
+    PopulationConfigType,
     Agent,
     Cauldron,
     FitnessFunction

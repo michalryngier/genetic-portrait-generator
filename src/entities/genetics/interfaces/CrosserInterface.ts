@@ -4,7 +4,7 @@ interface CrosserInterface {
     crossover(
         agent1: AgentInterface,
         agent2: AgentInterface,
-        crossOverChance: number
+        crossoverChance: number
     ): [AgentInterface, AgentInterface];
 }
 

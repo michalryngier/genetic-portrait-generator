@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const FitnessFunction_1 = __importDefault(require("../../genetics/FitnessFunction"));
 const ColorHelper_1 = __importDefault(require("../../../helpers/ColorHelper"));
 class NoiseFitnessFunction extends FitnessFunction_1.default {
-    evaluate(agent, referenceImage) {
+    performEvaluation(agent, referenceImage) {
         const agentBezier = agent.getUpdatedBezierCurve();
         let sumOfCoverage = 0, points = agentBezier.divider, step = 1 / points;
         for (let t = 0; t <= 1; t += step) {
@@ -38,7 +38,7 @@ class NoiseFitnessFunction extends FitnessFunction_1.default {
         else {
             avg = 1 / sumOfCoverage;
         }
-        return avg * this.weight + this._evaluate(agent, referenceImage);
+        return avg;
     }
 }
 exports.default = NoiseFitnessFunction;

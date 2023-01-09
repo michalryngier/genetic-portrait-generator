@@ -14,7 +14,7 @@ class MathHelper {
         return Math.random() * (max + 1 - min) + min;
     }
     static randInt(max, min = 0) {
-        return parseInt(Math.floor(Math.random() * ((max + 1) - min) + min).toString());
+        return parseInt(this.rand(max, min).toString());
     }
     static lerp(start, end, t) {
         return start + (end - start) * this.clamp(t, 1);

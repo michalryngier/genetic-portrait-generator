@@ -1,6 +1,5 @@
 import PointInterface from "../../graphics/interfaces/PointInterface";
-
-type PopulationType = {
+type PopulationConfigType = {
     maxPoint: PointInterface;
     nofPointsMax: number;
     nofPointsMin: number;
@@ -9,5 +8,5 @@ type PopulationType = {
     divider: number;
     size: number;
 };
-
-export default PopulationType;
+export default PopulationConfigType;
+//# sourceMappingURL=PopulationConfigType.d.ts.map

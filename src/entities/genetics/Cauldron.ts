@@ -5,7 +5,7 @@ import MutatorInterface from "./interfaces/MutatorInterface";
 import LoggerService from "../../services/logger/LoggerService";
 import CauldronInterface from "./interfaces/CauldronInterface";
 import EvaluatorInterface from "./interfaces/EvaluatorInterface";
-import PopulationType from "./types/PopulationType";
+import PopulationConfigType from "./types/PopulationConfigType";
 import JimpImageInterface from "../graphics/interfaces/JimpImageInterface";
 import PopulatorInterface from "./interfaces/PopulatorInterface";
 import SavingServiceInterface from "../../services/interfaces/SavingServiceInterface";
@@ -14,7 +14,7 @@ import SavableInterface from "../../services/interfaces/SavableInterface";
 import OutputImageConfigType from "../graphics/types/OutputImageConfigType";
 
 class Cauldron implements CauldronInterface, SavableInterface {
-    populationConfig: PopulationType | undefined;
+    populationConfig: PopulationConfigType | undefined;
     populator: PopulatorInterface | undefined;
     referenceImage: JimpImageInterface | undefined;
     mixer: MixerInterface | undefined;
@@ -30,7 +30,7 @@ class Cauldron implements CauldronInterface, SavableInterface {
     agents: Array<AgentInterface>;
 
     constructor(
-        populationConfig: PopulationType,
+        populationConfig: PopulationConfigType,
         populator: PopulatorInterface,
         referenceImage: JimpImageInterface,
         mixer: MixerInterface,
