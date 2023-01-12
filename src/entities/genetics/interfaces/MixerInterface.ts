@@ -14,7 +14,7 @@ interface MixerInterface {
         mutationChance: number,
         crossOverChance: number,
         nofMixes: number
-    ): void;
+    ): Array<AgentInterface>;
 }
 
 export default MixerInterface;

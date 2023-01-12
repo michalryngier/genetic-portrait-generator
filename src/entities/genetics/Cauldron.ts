@@ -107,7 +107,7 @@ class Cauldron implements CauldronInterface, SavableInterface {
         }
 
         if (this.mixer) {
-            this.mixer.mix(
+            this.agents = this.mixer.mix(
                 this.agents,
                 this.mutator,
                 this.crosser,

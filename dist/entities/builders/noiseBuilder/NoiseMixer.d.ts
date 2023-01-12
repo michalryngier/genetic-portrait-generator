@@ -5,11 +5,11 @@ import CrosserInterface from "../../genetics/interfaces/CrosserInterface";
 import AgentInterface from "../../genetics/interfaces/AgentInterface";
 import MutatorInterface from "../../genetics/interfaces/MutatorInterface";
 declare class NoiseMixer implements MixerInterface {
-    mix(agents: Array<AgentInterface>, mutator: MutatorInterface, crosser: CrosserInterface, evaluator: EvaluatorInterface, referenceImage: JimpImageInterface, mutationChance: number, crossoverChance: number, nofMixes: number): void;
+    mix(agents: Array<AgentInterface>, mutator: MutatorInterface, crosser: CrosserInterface, evaluator: EvaluatorInterface, referenceImage: JimpImageInterface, mutationChance: number, crossoverChance: number, nofMixes: number): Array<AgentInterface>;
     private sortAgents;
     private normalizeAgents;
     private crossover;
-    mutation(agents: Array<AgentInterface>, mutator: MutatorInterface, mutationChance: number): void;
+    private mutation;
     private drawAgent;
 }
 export default NoiseMixer;

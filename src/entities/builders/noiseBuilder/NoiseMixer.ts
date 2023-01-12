@@ -18,7 +18,7 @@ class NoiseMixer implements MixerInterface {
         mutationChance: number,
         crossoverChance: number,
         nofMixes: number
-    ): void {
+    ): Array<AgentInterface> {
         for (let i = 0; i < nofMixes; i++) {
             agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
             agents = this.sortAgents(agents);
@@ -30,6 +30,8 @@ class NoiseMixer implements MixerInterface {
             LoggerService.loading((((i + 1) / nofMixes) * 100).toString());
         }
         agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
+
+        return agents;
     }
 
     private sortAgents(agents: Array<AgentInterface>): Array<AgentInterface> {
@@ -65,7 +67,7 @@ class NoiseMixer implements MixerInterface {
         }
     }
 
-    mutation(agents: Array<AgentInterface>, mutator: MutatorInterface, mutationChance: number) {
+    private mutation(agents: Array<AgentInterface>, mutator: MutatorInterface, mutationChance: number) {
         for (let i = 0; i < agents.length; i++) {
             agents[i] = mutator.mutate(agents[i], mutationChance);
         }

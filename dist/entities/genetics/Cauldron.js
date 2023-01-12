@@ -61,7 +61,7 @@ class Cauldron {
             return;
         }
         if (this.mixer) {
-            this.mixer.mix(this.agents, this.mutator, this.crosser, this.evaluator, this.referenceImage, this.mutationChance, this.crossoverChance, this.nofMixes);
+            this.agents = this.mixer.mix(this.agents, this.mutator, this.crosser, this.evaluator, this.referenceImage, this.mutationChance, this.crossoverChance, this.nofMixes);
         }
         else {
             LoggerService_1.default.error("Mixer is not defined.");
