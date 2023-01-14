@@ -1,7 +1,7 @@
 interface SavableInterface {
-    saveProgress(): void;
+    saveProgress(): boolean;
 
-    loadProgress(): void;
+    loadProgress(): boolean;
 
     getProgressToSave<T>(): Array<T>;
 }

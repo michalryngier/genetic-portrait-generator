@@ -39,9 +39,9 @@ interface BuilderInterface {
 
     getBase64Image(): string | Error;
 
-    saveProgress(): void;
+    saveProgress(): boolean;
 
-    loadProgress(): void;
+    loadProgress(): boolean;
 }
 
 export default BuilderInterface;

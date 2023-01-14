@@ -69,22 +69,24 @@ class Cauldron implements CauldronInterface, SavableInterface {
         }
     }
 
-    loadProgress(): void {
+    loadProgress(): boolean {
         if (this.savingService) {
-            if (this.savingService.load(this)) {
-                LoggerService.error("Saving service is not defined.");
-            }
+            return this.savingService.load(this)
         } else {
             LoggerService.error("Saving service is not defined.");
         }
+
+        return false;
     }
 
-    saveProgress(): void {
+    saveProgress(): boolean {
         if (this.savingService) {
-            this.savingService.save(this);
+            return this.savingService.save(this);
         } else {
             LoggerService.error("Saving service is not defined.");
         }
+
+        return false;
     }
 
     getProgressToSave<AgentInterface>(): Array<AgentInterface> {

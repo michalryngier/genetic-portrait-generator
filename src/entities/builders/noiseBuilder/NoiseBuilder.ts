@@ -112,22 +112,22 @@ class NoiseBuilder implements BuilderInterface {
         this.outputImage.writeImage(path);
     }
 
-    saveProgress(): void {
+    saveProgress(): boolean {
         if (!this.cauldron) {
             LoggerService.error("Cauldron has not been initialized yet.");
-            return;
+            return false;
         }
 
-        this.cauldron.saveProgress();
+        return this.cauldron.saveProgress();
     }
 
-    loadProgress(): void {
+    loadProgress(): boolean {
         if (!this.cauldron) {
             LoggerService.error("Cauldron has not been initialized yet.");
-            return;
+            return false;
         }
 
-        this.cauldron.loadProgress();
+        return this.cauldron.loadProgress();
     }
 
     startCauldron(): void {
