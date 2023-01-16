@@ -27,8 +27,8 @@ declare class Cauldron implements CauldronInterface, SavableInterface {
     agents: Array<AgentInterface>;
     constructor(populationConfig: PopulationConfigType, populator: PopulatorInterface, referenceImage: JimpImageInterface, mixer: MixerInterface, evaluator: EvaluatorInterface, mutator: MutatorInterface, crosser: CrosserInterface, mutationChance: number, crossoverChance: number, nofMixes: number, drawingService: DrawingServiceInterface, savingService: SavingServiceInterface);
     draw(outputImage: JimpImageInterface, outputImageConfig: OutputImageConfigType): void;
-    loadProgress(): void;
-    saveProgress(): void;
+    loadProgress(): boolean;
+    saveProgress(): boolean;
     getProgressToSave<AgentInterface>(): Array<AgentInterface>;
     startMixing(): void;
 }

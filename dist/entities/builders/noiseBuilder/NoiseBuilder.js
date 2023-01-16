@@ -55,6 +55,15 @@ class NoiseBuilder {
         }
     }
     setPopulationConfig(populationConfig) {
+        if (populationConfig.maxPoint.x === 0 && populationConfig.maxPoint.y === 0) {
+            if (this.picture && this.picture._oi) {
+                populationConfig.maxPoint.x = this.picture._oi.width;
+                populationConfig.maxPoint.y = this.picture._oi.height;
+            }
+            else {
+                LoggerService_1.default.error("Population max point is (0, 0)!");
+            }
+        }
         this.populationConfig = populationConfig;
     }
     getBase64Image() {
@@ -92,16 +101,16 @@ class NoiseBuilder {
     saveProgress() {
         if (!this.cauldron) {
             LoggerService_1.default.error("Cauldron has not been initialized yet.");
-            return;
+            return false;
         }
-        this.cauldron.saveProgress();
+        return this.cauldron.saveProgress();
     }
     loadProgress() {
         if (!this.cauldron) {
             LoggerService_1.default.error("Cauldron has not been initialized yet.");
-            return;
+            return false;
         }
-        this.cauldron.loadProgress();
+        return this.cauldron.loadProgress();
     }
     startCauldron() {
         if (!this.cauldron) {

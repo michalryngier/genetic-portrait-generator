@@ -13,32 +13,19 @@ class NoiseFitnessFunction extends FitnessFunction_1.default {
             let point = agentBezier.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (point.x >= referenceImage.width || point.y >= referenceImage.height) {
-                    sumOfCoverage = points;
-                    break;
+                    return 0;
                 }
                 if (point.x <= 0 || point.y <= 0) {
-                    sumOfCoverage = points;
-                    break;
+                    return 0;
                 }
                 sumOfCoverage +=
                     referenceImage.getColorOnPosition(point, agentBezier.thickness) / ColorHelper_1.default.white;
             }
             else {
-                sumOfCoverage = points;
-                break;
+                return 0;
             }
         }
-        let avg;
-        if (sumOfCoverage === points) {
-            avg = 0;
-        }
-        else if (sumOfCoverage === 0) {
-            avg = 1;
-        }
-        else {
-            avg = 1 / sumOfCoverage;
-        }
-        return avg;
+        return sumOfCoverage === 0 ? 1 : 1 / sumOfCoverage;
     }
 }
 exports.default = NoiseFitnessFunction;

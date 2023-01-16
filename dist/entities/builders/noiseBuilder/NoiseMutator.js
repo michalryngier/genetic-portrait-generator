@@ -18,7 +18,7 @@ class NoiseMutator {
             }
             let rn = MathHelper_1.default.rand(1);
             let doMutation = factor >= rn;
-            if (4 >= (index % (ConfigurationProvider_1.default.ALLELE_LENGTH - 1))) {
+            if (ConfigurationProvider_1.default.SIGNIFICANT_ALLELES >= (index % (ConfigurationProvider_1.default.ALLELE_LENGTH - 1))) {
                 if (doMutation) {
                     return bit === "0" ? "1" : "0";
                 }

@@ -72,6 +72,15 @@ class NoiseBuilder implements BuilderInterface {
     }
 
     setPopulationConfig(populationConfig: PopulationConfigType): void {
+        if (populationConfig.maxPoint.x === 0 && populationConfig.maxPoint.y === 0) {
+            if (this.picture && this.picture._oi) {
+                populationConfig.maxPoint.x = this.picture._oi.width;
+                populationConfig.maxPoint.y = this.picture._oi.height;
+            } else {
+                LoggerService.error("Population max point is (0, 0)!");
+            }
+        }
+
         this.populationConfig = populationConfig;
     }
 

@@ -1,6 +1,6 @@
 interface SavableInterface {
-    saveProgress(): void;
-    loadProgress(): void;
+    saveProgress(): boolean;
+    loadProgress(): boolean;
     getProgressToSave<T>(): Array<T>;
 }
 export default SavableInterface;

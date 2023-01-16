@@ -23,8 +23,8 @@ interface BuilderInterface {
     startCauldron(): void;
     saveImage(path: string): void;
     getBase64Image(): string | Error;
-    saveProgress(): void;
-    loadProgress(): void;
+    saveProgress(): boolean;
+    loadProgress(): boolean;
 }
 export default BuilderInterface;
 //# sourceMappingURL=BuilderInterface.d.ts.map

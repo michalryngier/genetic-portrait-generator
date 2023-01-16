@@ -16,7 +16,7 @@ class NoiseMutator implements MutatorInterface {
 
             let rn = MathHelper.rand(1);
             let doMutation = factor >= rn;
-            if (4 >= (index % (ConfigurationProvider.ALLELE_LENGTH - 1))) {
+            if (ConfigurationProvider.SIGNIFICANT_ALLELES >= (index % (ConfigurationProvider.ALLELE_LENGTH - 1))) {
                 if (doMutation) {
                     return bit === "0" ? "1" : "0";
                 }

@@ -31,21 +31,21 @@ class Cauldron {
     }
     loadProgress() {
         if (this.savingService) {
-            if (this.savingService.load(this)) {
-                LoggerService_1.default.error("Saving service is not defined.");
-            }
+            return this.savingService.load(this);
         }
         else {
             LoggerService_1.default.error("Saving service is not defined.");
         }
+        return false;
     }
     saveProgress() {
         if (this.savingService) {
-            this.savingService.save(this);
+            return this.savingService.save(this);
         }
         else {
             LoggerService_1.default.error("Saving service is not defined.");
         }
+        return false;
     }
     getProgressToSave() {
         return this.agents;

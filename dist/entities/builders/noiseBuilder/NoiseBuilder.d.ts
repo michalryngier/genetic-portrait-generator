@@ -19,8 +19,8 @@ declare class NoiseBuilder implements BuilderInterface {
     setPopulationConfig(populationConfig: PopulationConfigType): void;
     getBase64Image(): string | Error;
     saveImage(path: string): void;
-    saveProgress(): void;
-    loadProgress(): void;
+    saveProgress(): boolean;
+    loadProgress(): boolean;
     startCauldron(): void;
     createPicture(imageUrl: string, useRawImage?: boolean): Promise<void>;
     setOutputImageConfig(outputImageConfig: OutputImageConfigType): void;

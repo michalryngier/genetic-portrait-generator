@@ -1,1 +1,1 @@
-{"version":3,"file":"ConfigurationProvider.js","sourceRoot":"","sources":["../../src/providers/ConfigurationProvider.ts"],"names":[],"mappings":";;AAAA,MAAM,qBAAqB;;AAChB,mCAAa,GAAG,EAAE,CAAC;AACnB,uCAAiB,GAAG,CAAC,CAAC;AAGjC,kBAAe,qBAAqB,CAAC"}
+{"version":3,"file":"ConfigurationProvider.js","sourceRoot":"","sources":["../../src/providers/ConfigurationProvider.ts"],"names":[],"mappings":";;AAAA,MAAM,qBAAqB;;AAChB,mCAAa,GAAG,EAAE,CAAC;AACnB,yCAAmB,GAAG,CAAC,CAAC;AACxB,uCAAiB,GAAG,CAAC,CAAC;AAGjC,kBAAe,qBAAqB,CAAC"}
