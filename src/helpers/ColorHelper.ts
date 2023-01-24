@@ -19,7 +19,7 @@ class ColorHelper {
     }
 
     public static getColorWithAlpha(color: number, alpha = 255): number {
-        let rgba = Jimp.intToRGBA(color);
+        const rgba = Jimp.intToRGBA(color);
 
         return Jimp.rgbaToInt(rgba.r, rgba.g, rgba.b, alpha);
     }

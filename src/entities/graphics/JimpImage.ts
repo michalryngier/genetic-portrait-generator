@@ -1,7 +1,6 @@
 import Jimp from "jimp";
 import MathHelper from "../../helpers/MathHelper";
 import ColorHelper from "../../helpers/ColorHelper";
-import JimpCallbackInterface from "./interfaces/JimpCallbackInterface";
 import PointInterface from "./interfaces/PointInterface";
 import ThresholdType from "./types/ThresholdType";
 import BezierCurveInterface from "./interfaces/BezierCurveInterface";
@@ -30,36 +29,56 @@ class JimpImage implements JimpImageInterface {
         point: PointInterface,
         threshold: number
     ): number {
-        let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(
-            point,
-            threshold
-        );
-        let sum = 0,
+        let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(point, threshold);
+        let sum = {r: 0, g: 0, b: 0},
             iterations = 0;
 
         for (let xx = xMin; xx <= xMax; xx++) {
             for (let yy = yMin; yy <= yMax; yy++, iterations++) {
-                sum += this.getColorOnPosition(new Point(xx, yy));
+                if (this.width < xx || this.height < yy || 0 > xx || 0 > yy) {
+                    continue;
+                }
+                const color = this.jimpImage.getPixelColor(
+                    xx,
+                    yy,
+                    function (err: Error | null, color: number) {
+                        if (err === null) {
+                            return color
+                        }
+
+                        return 0;
+                    }
+                );
+                const colorRGB = Jimp.intToRGBA(color);
+                sum.r += colorRGB.r;
+                sum.g += colorRGB.g;
+                sum.b += colorRGB.b;
             }
         }
 
-        return sum / iterations;
+        if (iterations === 0) {
+            return 0;
+        }
+
+        sum.r = Math.floor(sum.r / iterations);
+        sum.g = Math.floor(sum.g / iterations);
+        sum.b = Math.floor(sum.b / iterations);
+
+        return Jimp.rgbaToInt(sum.r, sum.g, sum.b, 255);
     }
 
     private getPointsWithThreshold(
         point: Point,
         threshold: number
     ): ThresholdType {
-        return {
-            xMin: Math.round(MathHelper.clamp(point.x - threshold, this.width)),
-            yMin: Math.round(MathHelper.clamp(point.y - threshold, this.height)),
-            yMax: Math.round(MathHelper.clamp(point.y + threshold, this.height)),
-            xMax: Math.round(MathHelper.clamp(point.x + threshold, this.width)),
-        };
-    }
+        threshold = Math.floor(threshold / 2);
 
-    private scan(fn: JimpCallbackInterface) {
-        this.image.scan(0, 0, this.width, this.height, fn);
+        return {
+            xMin: MathHelper.clamp(point.x - threshold, this.width),
+            yMin: MathHelper.clamp(point.y - threshold, this.height),
+            yMax: MathHelper.clamp(point.y + threshold, this.height),
+            xMax: MathHelper.clamp(point.x + threshold, this.width),
+        };
     }
 
     getColorOnPosition(
@@ -67,37 +86,20 @@ class JimpImage implements JimpImageInterface {
         threshold: number | null = null
     ): number {
         if (threshold !== null && threshold > 1) {
-            return this.getColorWithThreshold({x: point.x, y: point.y}, threshold);
+            return this.getColorWithThreshold(point, threshold);
         }
 
         return this.jimpImage.getPixelColor(
             point.x,
             point.y,
             function (err: Error | null, color: number) {
-                return color;
+                if (err === null && color !== undefined) {
+                    return color
+                }
+
+                return 0;
             }
         );
-    }
-
-    private flattenImage(precision = 1) {
-        let whiteVal = MathHelper.clamp(precision, 1) * ColorHelper.white;
-
-        this.scan((x, y) => {
-            let colorVal = ColorHelper.hexAlphaToDecNoAlpha(
-                ColorHelper.decToHex(this.getColorOnPosition(x, y))
-            );
-            if (colorVal < whiteVal) {
-                this.drawPoint({x, y}, ColorHelper.black);
-            } else {
-                this.drawPoint({x, y}, ColorHelper.white);
-            }
-        });
-    }
-
-    private fillColor(color: number) {
-        this.scan((x, y) => {
-            this.drawPoint({x, y}, color);
-        });
     }
 
     drawPoint(
@@ -107,18 +109,14 @@ class JimpImage implements JimpImageInterface {
         lerpColor: boolean = false
     ) {
         if (thickness > 1) {
-            let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(
-                    point,
-                    thickness / 2
-                ),
+            let {xMin, xMax, yMin, yMax} = this.getPointsWithThreshold(point, thickness),
                 diffX = Math.abs(xMax - xMin),
                 diffY = Math.abs(yMax - yMin);
 
             this.image.scan(xMin, yMin, diffX, diffY, (xx, yy) => {
                 if (lerpColor) {
                     let t =
-                        1 -
-                        (Math.abs(point.x - xx) / diffX) *
+                        (1 - (Math.abs(point.x - xx) / diffX)) *
                         (1 - Math.abs(point.y - yy) / diffY);
                     let alpha = MathHelper.lerp(0, 255, t);
                     color = ColorHelper.getColorWithAlpha(color, alpha);
@@ -145,7 +143,7 @@ class JimpImage implements JimpImageInterface {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
-                    const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
+                    const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
                     this.drawPoint(
                         new Point(point.x * this.scale, point.y * this.scale),
                         originalColor,
