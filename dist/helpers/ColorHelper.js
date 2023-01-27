@@ -10,7 +10,7 @@ class ColorHelper {
         return jimp_1.default.rgbaToInt(MathHelper_1.default.rand(255), MathHelper_1.default.rand(255), MathHelper_1.default.rand(255), alpha);
     }
     static getColorWithAlpha(color, alpha = 255) {
-        let rgba = jimp_1.default.intToRGBA(color);
+        const rgba = jimp_1.default.intToRGBA(color);
         return jimp_1.default.rgbaToInt(rgba.r, rgba.g, rgba.b, alpha);
     }
     static getColorFromHex(hex) {

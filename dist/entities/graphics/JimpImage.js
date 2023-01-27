@@ -19,58 +19,59 @@ class JimpImage {
     }
     getColorWithThreshold(point, threshold) {
         let { xMin, xMax, yMin, yMax } = this.getPointsWithThreshold(point, threshold);
-        let sum = 0, iterations = 0;
+        let sum = { r: 0, g: 0, b: 0 }, iterations = 0;
         for (let xx = xMin; xx <= xMax; xx++) {
             for (let yy = yMin; yy <= yMax; yy++, iterations++) {
-                sum += this.getColorOnPosition(new Point_1.default(xx, yy));
+                if (this.width < xx || this.height < yy || 0 > xx || 0 > yy) {
+                    continue;
+                }
+                const color = this.jimpImage.getPixelColor(xx, yy, function (err, color) {
+                    if (err === null) {
+                        return color;
+                    }
+                    return 0;
+                });
+                const colorRGB = jimp_1.default.intToRGBA(color);
+                sum.r += colorRGB.r;
+                sum.g += colorRGB.g;
+                sum.b += colorRGB.b;
             }
         }
-        return sum / iterations;
+        if (iterations === 0) {
+            return 0;
+        }
+        sum.r = Math.floor(sum.r / iterations);
+        sum.g = Math.floor(sum.g / iterations);
+        sum.b = Math.floor(sum.b / iterations);
+        return jimp_1.default.rgbaToInt(sum.r, sum.g, sum.b, 255);
     }
     getPointsWithThreshold(point, threshold) {
+        threshold = Math.floor(threshold / 2);
         return {
-            xMin: Math.round(MathHelper_1.default.clamp(point.x - threshold, this.width)),
-            yMin: Math.round(MathHelper_1.default.clamp(point.y - threshold, this.height)),
-            yMax: Math.round(MathHelper_1.default.clamp(point.y + threshold, this.height)),
-            xMax: Math.round(MathHelper_1.default.clamp(point.x + threshold, this.width)),
+            xMin: MathHelper_1.default.clamp(point.x - threshold, this.width),
+            yMin: MathHelper_1.default.clamp(point.y - threshold, this.height),
+            yMax: MathHelper_1.default.clamp(point.y + threshold, this.height),
+            xMax: MathHelper_1.default.clamp(point.x + threshold, this.width),
         };
-    }
-    scan(fn) {
-        this.image.scan(0, 0, this.width, this.height, fn);
     }
     getColorOnPosition(point, threshold = null) {
         if (threshold !== null && threshold > 1) {
-            return this.getColorWithThreshold({ x: point.x, y: point.y }, threshold);
+            return this.getColorWithThreshold(point, threshold);
         }
         return this.jimpImage.getPixelColor(point.x, point.y, function (err, color) {
-            return color;
-        });
-    }
-    flattenImage(precision = 1) {
-        let whiteVal = MathHelper_1.default.clamp(precision, 1) * ColorHelper_1.default.white;
-        this.scan((x, y) => {
-            let colorVal = ColorHelper_1.default.hexAlphaToDecNoAlpha(ColorHelper_1.default.decToHex(this.getColorOnPosition(x, y)));
-            if (colorVal < whiteVal) {
-                this.drawPoint({ x, y }, ColorHelper_1.default.black);
+            if (err === null && color !== undefined) {
+                return color;
             }
-            else {
-                this.drawPoint({ x, y }, ColorHelper_1.default.white);
-            }
-        });
-    }
-    fillColor(color) {
-        this.scan((x, y) => {
-            this.drawPoint({ x, y }, color);
+            return 0;
         });
     }
     drawPoint(point, color, thickness = 1, lerpColor = false) {
         if (thickness > 1) {
-            let { xMin, xMax, yMin, yMax } = this.getPointsWithThreshold(point, thickness / 2), diffX = Math.abs(xMax - xMin), diffY = Math.abs(yMax - yMin);
+            let { xMin, xMax, yMin, yMax } = this.getPointsWithThreshold(point, thickness), diffX = Math.abs(xMax - xMin), diffY = Math.abs(yMax - yMin);
             this.image.scan(xMin, yMin, diffX, diffY, (xx, yy) => {
                 if (lerpColor) {
-                    let t = 1 -
-                        (Math.abs(point.x - xx) / diffX) *
-                            (1 - Math.abs(point.y - yy) / diffY);
+                    let t = (1 - (Math.abs(point.x - xx) / diffX)) *
+                        (1 - Math.abs(point.y - yy) / diffY);
                     let alpha = MathHelper_1.default.lerp(0, 255, t);
                     color = ColorHelper_1.default.getColorWithAlpha(color, alpha);
                 }
@@ -91,7 +92,7 @@ class JimpImage {
             let point = bezierCurve.getPoint(t);
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
-                    const originalColor = originalImage.getColorOnPosition(point, Math.floor(bezierCurve.thickness / 2));
+                    const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
                     this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), originalColor, bezierCurve.thickness, lerpColor);
                 }
                 else if (color !== null) {

@@ -12,10 +12,7 @@ declare class JimpImage implements JimpImageInterface {
     get image(): Jimp;
     private getColorWithThreshold;
     private getPointsWithThreshold;
-    private scan;
     getColorOnPosition(point: PointInterface, threshold?: number | null): number;
-    private flattenImage;
-    private fillColor;
     drawPoint(point: PointInterface, color: number, thickness?: number, lerpColor?: boolean): void;
     drawBezier(bezierCurve: BezierCurveInterface, originalImage: JimpImageInterface, color?: number | null, lerpColor?: boolean): void;
     writeImage(fileName?: string): Jimp | Error;
