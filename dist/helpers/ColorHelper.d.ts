@@ -7,6 +7,12 @@ declare class ColorHelper {
     static transparent: number;
     static getRandomColor(alpha?: number): number;
     static getColorWithAlpha(color: number, alpha?: number): number;
+    static getRGBAColorFromInt(color: number): {
+        r: number;
+        g: number;
+        b: number;
+        a: number;
+    };
     static getColorFromHex(hex: string): number;
     static decToHex(dec: number): string;
     static decToHexAlpha(dec: string): string;

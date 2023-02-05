@@ -24,6 +24,10 @@ class ColorHelper {
         return Jimp.rgbaToInt(rgba.r, rgba.g, rgba.b, alpha);
     }
 
+    public static getRGBAColorFromInt(color: number): { r: number, g: number, b: number, a: number } {
+        return Jimp.intToRGBA(color);
+    }
+
     public static getColorFromHex(hex: string): number {
         hex = hex.replace(/#/gi, "");
         if (hex.length === 6) {

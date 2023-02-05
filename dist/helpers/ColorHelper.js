@@ -13,6 +13,9 @@ class ColorHelper {
         const rgba = jimp_1.default.intToRGBA(color);
         return jimp_1.default.rgbaToInt(rgba.r, rgba.g, rgba.b, alpha);
     }
+    static getRGBAColorFromInt(color) {
+        return jimp_1.default.intToRGBA(color);
+    }
     static getColorFromHex(hex) {
         hex = hex.replace(/#/gi, "");
         if (hex.length === 6) {
