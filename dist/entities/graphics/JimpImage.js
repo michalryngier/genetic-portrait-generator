@@ -93,10 +93,10 @@ class JimpImage {
             if (!isNaN(point.x) && !isNaN(point.y)) {
                 if (getColor) {
                     const originalColor = originalImage.getColorOnPosition(point, bezierCurve.thickness);
-                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), originalColor, bezierCurve.thickness, lerpColor);
+                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), originalColor, bezierCurve.thickness * this.scale, lerpColor);
                 }
                 else if (color !== null) {
-                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), color, bezierCurve.thickness, lerpColor);
+                    this.drawPoint(new Point_1.default(point.x * this.scale, point.y * this.scale), color, bezierCurve.thickness * this.scale, lerpColor);
                 }
             }
         }

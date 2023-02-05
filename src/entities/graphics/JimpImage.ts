@@ -147,14 +147,14 @@ class JimpImage implements JimpImageInterface {
                     this.drawPoint(
                         new Point(point.x * this.scale, point.y * this.scale),
                         originalColor,
-                        bezierCurve.thickness,
+                        bezierCurve.thickness * this.scale,
                         lerpColor
                     );
                 } else if (color !== null) {
                     this.drawPoint(
                         new Point(point.x * this.scale, point.y * this.scale),
                         color,
-                        bezierCurve.thickness,
+                        bezierCurve.thickness * this.scale,
                         lerpColor
                     );
                 }
