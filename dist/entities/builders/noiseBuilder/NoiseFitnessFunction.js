@@ -25,7 +25,7 @@ class NoiseFitnessFunction extends FitnessFunction_1.default {
                 return 0;
             }
         }
-        return sumOfCoverage === 0 ? 1 : 1 / sumOfCoverage;
+        return Math.exp(-sumOfCoverage);
     }
 }
 exports.default = NoiseFitnessFunction;

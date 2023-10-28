@@ -27,7 +27,7 @@ class NoiseFitnessFunction extends FitnessFunction {
             }
         }
 
-        return sumOfCoverage === 0 ? 1 : 1 / sumOfCoverage;
+        return Math.exp(-sumOfCoverage);
     }
 }
 
