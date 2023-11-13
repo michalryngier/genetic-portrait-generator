@@ -9,6 +9,8 @@ import JimpImage from "./JimpImage";
 import Picture from "./Picture";
 import Point from "./Point";
 import OutputImageConfigType from "./types/OutputImageConfigType";
+const interpolateCurve = require('bindings')('interpolate.node')
+
 
 export {
     BezierCurveInterface,
@@ -21,5 +23,6 @@ export {
     BezierCurve,
     JimpImage,
     Picture,
-    Point
+    Point,
+    interpolateCurve
 }

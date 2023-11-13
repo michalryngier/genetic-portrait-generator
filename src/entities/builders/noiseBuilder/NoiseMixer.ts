@@ -20,14 +20,16 @@ class NoiseMixer implements MixerInterface {
         nofMixes: number
     ): Array<AgentInterface> {
         for (let i = 0; i < nofMixes; i++) {
+            const start = Date.now();
             agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
+            console.log("Evaluation took: " + (Date.now() - start))
             agents = this.sortAgents(agents);
             agents = this.normalizeAgents(agents);
 
             this.crossover(agents, crosser, crossoverChance);
             this.mutation(agents, mutator, mutationChance);
 
-            LoggerService.loading((((i + 1) / nofMixes) * 100).toString());
+            // LoggerService.loading((((i + 1) / nofMixes) * 100).toString());
         }
         agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
 

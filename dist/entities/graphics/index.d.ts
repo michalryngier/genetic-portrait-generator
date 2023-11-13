@@ -9,5 +9,6 @@ import JimpImage from "./JimpImage";
 import Picture from "./Picture";
 import Point from "./Point";
 import OutputImageConfigType from "./types/OutputImageConfigType";
-export { BezierCurveInterface, JimpCallbackInterface, JimpImageInterface, PictureInterface, PointInterface, ThresholdType, OutputImageConfigType, BezierCurve, JimpImage, Picture, Point };
+declare const interpolateCurve: any;
+export { BezierCurveInterface, JimpCallbackInterface, JimpImageInterface, PictureInterface, PointInterface, ThresholdType, OutputImageConfigType, BezierCurve, JimpImage, Picture, Point, interpolateCurve };
 //# sourceMappingURL=index.d.ts.map

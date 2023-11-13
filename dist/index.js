@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.services = exports.providers = exports.helpers = exports.entities = void 0;
+exports.interpolator = exports.services = exports.providers = exports.helpers = exports.entities = void 0;
 const entities = __importStar(require("./entities/"));
 exports.entities = entities;
 const helpers = __importStar(require("./helpers/"));
@@ -32,4 +32,12 @@ const providers = __importStar(require("./providers/"));
 exports.providers = providers;
 const services = __importStar(require("./services/"));
 exports.services = services;
+const interpolateCurve = require('bindings')('interpolate.node');
+class Interpolator {
+    singletonFunction(t, points) {
+        return interpolateCurve.interpolate(t, points);
+    }
+}
+const interpolator = (new Interpolator()).singletonFunction;
+exports.interpolator = interpolator;
 //# sourceMappingURL=index.js.map
