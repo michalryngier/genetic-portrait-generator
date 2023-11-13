@@ -41,7 +41,7 @@ class JimpImage implements JimpImageInterface {
                 const color = this.jimpImage.getPixelColor(
                     xx,
                     yy,
-                    function (err: Error | null, color: number) {
+                    (err: Error | null, color: number) => {
                         if (err === null) {
                             return color
                         }
@@ -92,7 +92,7 @@ class JimpImage implements JimpImageInterface {
         return this.jimpImage.getPixelColor(
             point.x,
             point.y,
-            function (err: Error | null, color: number) {
+            (err: Error | null, color: number) => {
                 if (err === null && color !== undefined) {
                     return color
                 }

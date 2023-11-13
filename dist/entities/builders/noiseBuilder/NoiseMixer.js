@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const LoggerService_1 = __importDefault(require("../../../services/logger/LoggerService"));
 const MathHelper_1 = __importDefault(require("../../../helpers/MathHelper"));
 const lodash_1 = __importDefault(require("lodash"));
 class NoiseMixer {
@@ -14,7 +13,6 @@ class NoiseMixer {
             agents = this.normalizeAgents(agents);
             this.crossover(agents, crosser, crossoverChance);
             this.mutation(agents, mutator, mutationChance);
-            LoggerService_1.default.loading((((i + 1) / nofMixes) * 100).toString());
         }
         agents.forEach((agent) => evaluator.evaluate(agent, referenceImage));
         return agents;

@@ -25,7 +25,7 @@ class JimpImage {
                 if (this.width < xx || this.height < yy || 0 > xx || 0 > yy) {
                     continue;
                 }
-                const color = this.jimpImage.getPixelColor(xx, yy, function (err, color) {
+                const color = this.jimpImage.getPixelColor(xx, yy, (err, color) => {
                     if (err === null) {
                         return color;
                     }
@@ -58,7 +58,7 @@ class JimpImage {
         if (threshold !== null && threshold > 1) {
             return this.getColorWithThreshold(point, threshold);
         }
-        return this.jimpImage.getPixelColor(point.x, point.y, function (err, color) {
+        return this.jimpImage.getPixelColor(point.x, point.y, (err, color) => {
             if (err === null && color !== undefined) {
                 return color;
             }
