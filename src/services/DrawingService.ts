@@ -17,7 +17,7 @@ class DrawingService implements DrawingServiceInterface {
         config: OutputImageConfigType
     ): void {
         agents.forEach((agent: AgentInterface) => {
-            if (agent.fitnessScore > 0) {
+            if (agent.fitnessScore > 0.1) {
                 image.drawBezier(
                     agent.getUpdatedBezierCurve(),
                     this.originalImage,

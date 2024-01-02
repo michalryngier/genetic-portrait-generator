@@ -11,9 +11,9 @@ class ColorHelper {
 
     public static getRandomColor(alpha: number = 255): number {
         return Jimp.rgbaToInt(
-            MathHelper.rand(255),
-            MathHelper.rand(255),
-            MathHelper.rand(255),
+            MathHelper.randInt(255),
+            MathHelper.randInt(255),
+            MathHelper.randInt(255),
             alpha
         );
     }

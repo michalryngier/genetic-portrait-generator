@@ -7,7 +7,7 @@ const jimp_1 = __importDefault(require("jimp"));
 const MathHelper_1 = __importDefault(require("./MathHelper"));
 class ColorHelper {
     static getRandomColor(alpha = 255) {
-        return jimp_1.default.rgbaToInt(MathHelper_1.default.rand(255), MathHelper_1.default.rand(255), MathHelper_1.default.rand(255), alpha);
+        return jimp_1.default.rgbaToInt(MathHelper_1.default.randInt(255), MathHelper_1.default.randInt(255), MathHelper_1.default.randInt(255), alpha);
     }
     static getColorWithAlpha(color, alpha = 255) {
         const rgba = jimp_1.default.intToRGBA(color);
